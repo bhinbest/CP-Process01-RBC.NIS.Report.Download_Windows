@@ -1,0 +1,601 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Outstanding_By_Report" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:si="clr-namespace:System.IO;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_Delay" Type="InArgument(x:Double)" />
+    <x:Property Name="io_DownloadedPDFFile" Type="InOutArgument(si:FileInfo)" />
+    <x:Property Name="io_DownloadedXLSFile" Type="InOutArgument(si:FileInfo)" />
+    <x:Property Name="in_RBCNISReportFolder" Type="InArgument(x:String)" />
+    <x:Property Name="io_NewRBCNISOutstandingByDateFileName" Type="InOutArgument(x:String)" />
+  </x:Members>
+  <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
+  <sap:VirtualizedContainerService.HintSize>1537,1074</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="80">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>UiPath.Mail.Outlook.Activities</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Mail.Activities.Business.ForEachMail</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.Mail.Activities.Business</x:String>
+      <x:String>UiPath.Shared.Activities.Business</x:String>
+      <x:String>UiPath.Mail</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Models</x:String>
+      <x:String>RBC_NIS_Login_Windows</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="128">
+      <AssemblyReference>Microsoft.CSharp</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.PDF.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.Watcher</AssemblyReference>
+      <AssemblyReference>System.IO.Packaging</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.AccessControl</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
+      <AssemblyReference>RBC NIS Login_Windows</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>System.Windows.Forms.Design</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices.RuntimeInformation</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="RBC NIS 'Outstanding By Date' Report" sap:VirtualizedContainerService.HintSize="558,1009" sap2010:WorkflowViewState.IdRef="Sequence_46">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="496,141" sap2010:WorkflowViewState.IdRef="LogMessage_18" Level="Info">
+      <ui:LogMessage.Message>
+        <InArgument x:TypeArguments="x:Object">
+          <CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_124">"Begin Downloading Outstanding Reports"</CSharpValue>
+        </InArgument>
+      </ui:LogMessage.Message>
+    </ui:LogMessage>
+    <uix:NApplicationCard sap2010:Annotation.AnnotationText="Use the Browser to Access RBC NIS Reports and Download to SharePoint" AttachMode="ByInstance" CloseMode="Never" DisplayName="Download RBC NIS Reports" sap:VirtualizedContainerService.HintSize="496,536" sap2010:WorkflowViewState.IdRef="NApplicationCard_10" InteractionMode="DebuggerApi" OpenMode="Never" ScopeGuid="9948d0dd-e31f-47e8-a7d9-b201863ab0d4" Version="V2" WindowResize="Maximize">
+      <uix:NApplicationCard.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="462,288" sap2010:WorkflowViewState.IdRef="Sequence_87">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Sequence DisplayName="Generate the 'Outstanding By Date' Report" sap:VirtualizedContainerService.HintSize="400,81" sap2010:WorkflowViewState.IdRef="Sequence_38">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:String" Default="28" Name="OutstandingDate" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Outstanding, By Date'" sap:VirtualizedContainerService.HintSize="356,157" sap2010:WorkflowViewState.IdRef="NClick_31" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="9948d0dd-e31f-47e8-a7d9-b201863ab0d4" Version="V3">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable BrowserURL="https://nis.rbc.com/nis/app/#/reports" ContentHash="8puyNRWo5kCxNfP-oaz8eA" DesignTimeRectangle="428, 527, 169, 23" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'Outstanding, By Date'" FullSelectorArgument="&lt;webctrl aaname='  Outstanding, By Date ' tag='LABEL' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='  Outstanding, By Date ' tag='LABEL' type='' class='control control--radio' check:innerText='Outstanding, By Date' /&gt;" Guid="6d064da3-b024-49fd-af57-1278c22c5959" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAK0AAAAbCAYAAAAOPA8rAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAR1SURBVHhe7Zq7UhsxFIbzeunS5QWoqHgJGhoeAly4SM+1YIYZJnYFZbwwgA0vEHASGkX/7h7tkXS0N1+wZ87OfDP2Xo6ko2+1stZf/v77MIqyTai0ytah0ipbh0qrbB0qrbJ1NEr7a5KZn6OROT07M8PhMAefsW+SZeI1irJKktL+fns3JycnZjwem7u7OzObzcx8Ps/BZ+wbQebTU/P2PhdjKMoqEKV9eno2g8HAvL6+mqbt5eXFHB8fm+fpLIqjKKsgkvbpeWouLy9LJdtvFxcXZtpL3Buz/+27+crYGT4K520f2XCvaNPBjfh9HbgyA/av5fObifurYM8MHqTzl48nLaYEGGH7bhhxO00Vrg+Fxpfs/jCZdE0C6px2wj+awS7KWW2iN1la0E/clLQlrdvWvw88aTGHbTMlSG2Y62KOy2MmefhhdqSGMpG7jLhXB12uocSvV9rPIK5DJV2/J5qUOxIw3F9H/z5w0mKVYDQal/r13/DjLGuxqlCNAIfmKjhGAhajbZUQNzI44XEtTxhRxgxHcsTjNwuRd6gwgjDZeOfz0cvreB7blnUVCBMK1CqmVy/bLmpTyydRWGYoizvO49WWkZKtqmdRf6FfKF6yDxAnvC72w0mLJSysCCy63d7emtF47BUi4cR0lWU42XwpO0krJQZJSyVM2m8hgbhUPmVSE9fnlG0MBWqMKd1IRFdpPSg+iCWkvpGnDylpwz5N1D2V67prgrY6abH2isf7ohtinNlYFDfF8qQt9lE8N0qxxMTJTyeeSAoWjRbpEStsY9eYfh6CmAtJC2JJi9xRbrjYnLbS+sfi0VuIE51Dfe+X5aTFSwOswS66IQZiUdwUUicTfsf0lJbHIVwyhYQxyaVrQuGqGEW9pPKTkraMGR+3RB1bjxTDz6/dR23Hd4rPy/RISVvV3Zc/wNU7juPqGrEh0nqSSJ1iKSStpCUhqsbVS+uIYsYJK64Pv1vKujUJFonApy2JGE0x69q5VGndvj2zI4xsPnHu/HloUVcqt8g3q0cbaRvatvTpwXQ6tdOD86ggiapTBKQkE7s2uflnoTNpvzhyUoIqOXJsWVEZ7JhX14Rg/MaISMRojJka/UFXaQW8G5zXvzZ2kLuASNKQSNqSPAdy7HAg+rQfYg6hY6jhFbwxXMhKWj+OLC2P6yUVCePn2++dBRNiNsVoEzOUya1IUOfTcRfDx6sTI34iCdMwEVksry/C81BXqie7IcJ8peInpZ1Msvx/Botu+ZLX/b1XiLIsWIcG4teL1gJ3c4TybR5OWoAXA/gvQd8NU4Pz83ZTA6UNfK7IoWkOHV9AND6SW8TfBBuGJy1eweJVbN/t6OjIvM//eAUoiyBIyx6vS4FJuw3CAk9agH9r4c8vXTeMsFP7Qy6MpyjLJpIWPNvHPEbcNqsJmBJghFVhlXUhSgswVcAcFz+ssCIAgbEGCyBqvkpgj2F5S6cEyjpJSktMsvt8VQGvZvHSAEBU7MvsMekaRVkljdIqyqah0ipbxof5D6/OZoobKYNpAAAAAElFTkSuQmCC" InformativeScreenshot="31a6999698e3d8762bddc262c0aa05ac.png" Reference="8GC8MgTQHkKpnxBaCvUnXA/VB4V7qTcTUeod-DHO4DBOg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Note Issuance System' /&gt;" SearchSteps="FuzzySelector, Image" Version="V2" Visibility="Interactive" />
+                </uix:NClick.Target>
+              </uix:NClick>
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Go to Generate report' for Outstanding Reports" sap:VirtualizedContainerService.HintSize="356,157" sap2010:WorkflowViewState.IdRef="NClick_32" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="9948d0dd-e31f-47e8-a7d9-b201863ab0d4" Version="V3">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable BrowserURL="https://nis.rbc.com/nis/app/#/reports" ContentHash="0e41kFI5EkeZEplFuKtZaA" DesignTimeRectangle="848, 782, 188, 45" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'Go to Generate report'" FullSelectorArgument="&lt;webctrl aaname='Go to Generate report' tag='INPUT' type='button' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Go to Generate report' tag='INPUT' type='button' class='right-button submitLocalStyle' check:text='Go to Generate report' /&gt;" Guid="7f672df9-02b3-4168-991f-bb6cc3caf0d4" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAMAAAAAxCAYAAACMEqa7AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAORSURBVHhe7ZhJbtswFIZz3m5yJB8gh8iiixzBMAqv7Z2zMZAmC5XiIL2JpK3aap33E/iQiOObfkrJ08fvzwEAr0AAwDWTAJ5+/ATADRAAcA0EAFwDAQDXQADANRAAcA0EAFwDAQDXQADANRAAcA0EAFwDAQDXQADANRAAcA0EAFwDAQDXQADANSsLYD+8ngfVtm/W3H/H8+4rW0ba4WjOBY/NegJ4eR9OoY5Ouz3vfzvrviuJBXuTAs0CPb8Pz6z/OGxV339GiKO2+8FZwaeVBBAKKNTVvW76Wwlgc3jgmx4CWMQqAogFeoUjsRBJqwtHf1LRt8nl+wTiG+preH0xxgz43udhM40VsXPb1Nljckmj4yVem/wplnySvs5nSj+piOt2StL+p90xn0NiUbW1rNnzc4xLRH5W8rd+iVn6Odr5q+HTLVlFAGNwLvvMyUmmzuZPp1bx6jfAgn2uuG1issneXOAliXMBpeST4osFRZ6F+EqxsJiFOVvyLG2w7G/bKSkCE5dA09ayRouCnhvtYOemGM3+zYXPBHpFTpayggBSQHjhzYGLrQRLBjujC7wzvmAfayz2TS3vFwtA7j0msBSFTK4ct+LBL4l0rrafIYtDPnftlOjC7dtqrQnQ+AtxszmTvVbM5Jz7sJoAlHMZWnjxd8vhTiBk8S7Zp7pmhBZTTK7dUqGkZPKioX3pd7NdEgfa6BzpW9dOiZWnnq2V3Kp4GWJmArViFpA+3YEVBKALtDZWndcJhFy3aB/zxjTGagmduEwAdhEmov3CzvgZQc+VvljPTTsldQHUbb1QAFbMPQkgOWu/elmxVpJWLeiMGl+0T+NNRZPV8CXRE0DjnIwWwLhenCmLQz537ZRYdvVsrYxTW2p2MHu/uwACMamGk7woU0BZkV6QSF0wy/ZJc8S6qX8WlP6jLpx3aCVT9I2JFbY8787Tc82fudDSfmxO3JOLvm2nRJ6Radqa48zGtf/aDjnHilnA8OnWrCaASCkw1qSDJaildYo2kgsitDmBS/YZketS48nRc9rJ1H3lQpgaEZ0WQIDFLsRM3Y7EJnmhkKaKbCLNtW77uq1lTfnXaWrWHukTbm69+CQsn27LugIA34y6aB4FCAD8BRAAcA0EAMBDAwEA10AAwDUQAHANBABcAwEA10AAwDUQAHANBABcAwEA10AAwDUQAHANBABcAwEA1ygBAOARCAA45nP4AyG8rpLGqvsWAAAAAElFTkSuQmCC" InformativeScreenshot="9e8044abacec1a47ddfa64db3436dba5.png" Reference="8GC8MgTQHkKpnxBaCvUnXA/zYe6VeuVLUWTiLz2V03ekA" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Note Issuance System' /&gt;" SearchSteps="FuzzySelector, Image" Version="V2" Visibility="Interactive" />
+                </uix:NClick.Target>
+              </uix:NClick>
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Trade Level' in the Report Options section for Outstanding Reports" sap:VirtualizedContainerService.HintSize="356,157" sap2010:WorkflowViewState.IdRef="NClick_33" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="9948d0dd-e31f-47e8-a7d9-b201863ab0d4" Version="V3">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable BrowserURL="https://nis.rbc.com/nis/app/#/reports" ContentHash="XJq_UVBAQ0elfHrmIwImkg" DesignTimeRectangle="421, 931, 99, 23" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'Trade Level'" FullSelectorArgument="&lt;webctrl parentid='ReportType' tag='LABEL' /&gt;" FuzzySelectorArgument="&lt;webctrl parentid='ReportType' tag='LABEL' type='' class='control control--radio' aaname='  Trade Level ' check:innerText='Trade Level' /&gt;" Guid="9e82a863-4bd0-4d07-84a3-01aa2a1079eb" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAGcAAAAbCAYAAABhoZFDAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAASISURBVGhD7ZjNSyNZFMXn33PTNARpWhol0DZoFslCN9lkkyzMRhdmIUK7iFkEERsRx5goBJoRYxBKxJBJDJoyigEd0Jixe3PmnfqIVaZSFZMMk2nqwQ+q6t1338epd9+t+u35x0+4DCeuOEOMK84Q44ozxDiK82epjMNcDqndXSSTSQVe81mpXLZs4zIYOorz2HjCzs4Ojo6OcHJygqurKzSbTQVe81mOoqVSaDw1LX249IelOJeXVSQSCVxfX8Op1Go1rK6uoipftflx6Y82cS6rMvb29rSl775kMhnIrkADxSQOQxl3TK+FO6ibEFdOBjDy/oM10+soW7R5GxdITPfqq5+2PVJZx2cx98/JC9Nzkzg8Y7oJZZ0KzyKeQUafVjxU8kjvZxViMxQliJh2nz68wINFm7fxi4nDrCyXO9KWuffCJKH8hiwuG6U488ha1PXOLyYOU2NmYP0WSZKQExmesRM72sTRB7q4iYXpT1pdA4WtOUyN8Z72n0S9hLuWnxqy8wG8a9Wx7asFlg8Q9XtVm1EvpkztjTiI08HPzVZQ9O3FwvGLrfrMh+Ui7/+ClAxjfJRj/IB3k2F8q2i2TuLw24Vhqd9CH7vCl7ETOzqJM/J+VkyqodldYC28iO3TGm5uS9gOeZUJRr6rbfKLvPdiZuUABfkM21GfUt9a4PsDRMbEvf8r8nIdhVQYHlHv36pr/o3YiGPn5zGLoLj2CLFU+zq+MWTPbOJG3JeTs8oYg6kSbmQJMb+oG1tCnrZO4vDjkt8w/Rb6oC9jJ3Z0EudlkhaYJpNHRFyPhLKGs6qE2IR4pi1wdYMLE8TarV6vLZx/E9VWG53O4tj7aSAdEtcTX1Fg3e3v8Itx+Tf4Aqhj9Mwb5nS8pAgbORTX/zdxzANtoLofR2gmgI8TWkjRbeRNTLXZmxdY7cMCq91hI46jn+NFseBfEBNhTA1pYaQfxXNtTlZtld3vJM6gwposyyKspU2d2NGNOA/7YWEjQsLGGaq3ddwVjTYHCHGi0YOW/fMPCVGGH23RWm98pS7CooF7PWwa6WLndPSj9ju+kld21MtO0XdO3txOcGcQr6M4Q5cQGAaqLooQZ4vx+gxr2pmj2mjhhPVJCYWihETIB49BnOeKurs8wTiyRS5KCdnkHJYZUvR+W2jiTMxhTU/vyakIT134KSx9Ef0GxBy8iLaSgwb+iHLMPkRS6gtWPc1gYT6jjc9BnJJIpfkfrd+ipNLn56ZO7OgqrN1LWuYmbEeDWE4tmW3uzxRB1AwqgOj3PJZfvf13p+sITr5kex7/HNJ6tmRCE0exM6DtTEc/xTjGWTcZV8+eFswoZ+HRsrWRUR/8K5J6TjqJQ/gByX9lvRaGtHS6+5DmYo9JHP564S+YXks8HsdT829TBy69YxKH8O8yf2K+tXDHyCKheO3PpXfaxCFVEZ64g7rJ3hjKuGNcYQaPpTiEIY5nEA94ZmAUit8whIIoWZmoY9rshrJ/h47i6JTK50oWx18y/LgkFITPyqLOqo3LYHAUx+W/wxVniHHFGVp+4h9dN5JmnmIzHgAAAABJRU5ErkJggg==" InformativeScreenshot="ea94e02b9f269bc072ac69ee63f788ff.png" Reference="8GC8MgTQHkKpnxBaCvUnXA/llFwgYqWB0Gw_AoczStMww" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Note Issuance System' /&gt;" SearchSteps="FuzzySelector, Image" Version="V2" Visibility="Interactive" />
+                </uix:NClick.Target>
+              </uix:NClick>
+              <uix:NClick ActivateBefore="True" ClickType="Single" DelayBefore="3" DisplayName="Click into the 'End Date' for Outstanding Reports" sap:VirtualizedContainerService.HintSize="356,157" sap2010:WorkflowViewState.IdRef="NClick_34" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="9948d0dd-e31f-47e8-a7d9-b201863ab0d4" Version="V3">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable BrowserURL="https://nis.rbc.com/nis/app/#/reports" ContentHash="NpsImQ8SC0efjijF4v_L-w" DesignTimeRectangle="406, 697, 171, 34" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'End Date Button'" FullSelectorArgument="&lt;webctrl aria-role='combobox' tag='INPUT' type='text' /&gt;" FuzzySelectorArgument="&lt;webctrl aria-role='combobox' tag='INPUT' type='text' class='p-element ng-tns-c1685646730-0 p-inputtext p-component ng-star-inserted' aaname='' /&gt;" Guid="7515cddf-eb12-4acf-8317-b2d5965ba3a4" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAK8AAAAmCAYAAACyLctlAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACkSURBVHhe7dTBCYMAAATBtGLTwXZsJS3ko34MBiKI5O/CDFwHyz3mZd3MihOvZXfEO04vs8SG5/u7U7xwd794L88LdydessRLlnjJEi9Z4iVLvGSJlyzxkiVessRLlnjJEi9Z4iVLvGSJlyzxkiVessRLlnjJEi9Z4iVLvGSJlyzxkiVessRLlnjJEi9Z4iVLvGT9jdessD3efUe8ZrWJ16Jbtw+msepsxdK0zQAAAABJRU5ErkJggg==" InformativeScreenshot="5d9061eb6d0e25b9187f0d6b41794d90.png" IsResponsive="True" Reference="8GC8MgTQHkKpnxBaCvUnXA/hOMSerrrKEmx5DvEET508g" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Note Issuance System' /&gt;" SearchSteps="FuzzySelector, Image" Version="V2" Visibility="Interactive">
+                    <uix:TargetAnchorable.Anchors>
+                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                        <uix:Target DesignTimeRectangle="406, 661, 303, 26" ElementType="Text" FriendlyName="'End Date Button'" FullSelectorArgument="&lt;webctrl aaname='End Date' class='fieldLabel' parentid='Program' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='End Date' class='fieldLabel' parentid='Program' tag='DIV' type='' check:innerText='End Date' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAATMAAAAeCAYAAABAHfkCAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHiSURBVHhe7dg/bsIwFIDxXq9bt16AiamXYGHhFAwMHAIJiUsgxDFaFrcm8b/kxXVCqOqnb/gtxgnO8uklL59fNwMAtSNmAFQgZgBUIGYAVCBmAFQgZgBUIGYAVCBmAFQgZgBU+LOYHdbv5vXtx3JvzsLvAPCIELPL3ixsbASrY3rRFCUx83sEc5wBgF7VxKyxMQfhupzz7qO5dn0SfweggxizZ0xBo2KW7Lma7bJdt0ZFKbqWmAGqjYjZyaza3xe7a5h4rF6g+gGaHjMrvp+bzjr/0fJnH5g07dmbe4bnaXyY7aW9FkB1Cl4zXTyimC2jkLk1Hwk5Mt6kmEWviz463RgF96DlYjb4rAQNqNWkmIlrLkDHTbtnYAqaLWZd0iultCb/j1sLZwZQk8mvmW69G4YQnfRjfS5UJXukmPn9XdmY/TI5RtEDUI/ZYxYCM2fM+pNd/M2uOU/pZBbdS5I5H4D/64mT2cDH+NExS+Pj/tvtDWeJ9pVOZoQLUKPgm5kLRlnMHpl8/L2GRK+A2b2ZffezR9/1Uuk0CaAeT4iZ1Z+m5H2p4UBJkUm/fa2O0hRm9c9yXxefl5gBtQoxA4CKETMAKhAzACoQMwAqEDMAKhAzACoQMwAqEDMAKhAzAArczDc4ejAIc7K8DgAAAABJRU5ErkJggg==" SearchSteps="FuzzySelector, Image" />
+                      </scg:List>
+                    </uix:TargetAnchorable.Anchors>
+                  </uix:TargetAnchorable>
+                </uix:NClick.Target>
+              </uix:NClick>
+              <Assign sap:VirtualizedContainerService.HintSize="356,62" sap2010:WorkflowViewState.IdRef="Assign_17">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">
+                    <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_92">OutstandingDate</CSharpReference>
+                  </OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">
+                    <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_125">DateTime.Now.ToString("dd").TrimStart('0');</CSharpValue>
+                  </InArgument>
+                </Assign.Value>
+              </Assign>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="356,141" sap2010:WorkflowViewState.IdRef="LogMessage_25">
+                <ui:LogMessage.Level>
+                  <InArgument x:TypeArguments="ui:LogLevel">
+                    <CSharpValue x:TypeArguments="ui:LogLevel" sap2010:WorkflowViewState.IdRef="CSharpValue`1_126">UiPath.Core.Activities.LogLevel.Info</CSharpValue>
+                  </InArgument>
+                </ui:LogMessage.Level>
+                <ui:LogMessage.Message>
+                  <InArgument x:TypeArguments="x:Object">
+                    <CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_260">OutstandingDate</CSharpValue>
+                  </InArgument>
+                </ui:LogMessage.Message>
+              </ui:LogMessage>
+              <uix:NClick ActivateBefore="True" ClickType="Single" DelayBefore="3" DisplayName="Click the Current Date (from the above Assign) for Outstanding PDF" sap:VirtualizedContainerService.HintSize="338,157" sap2010:WorkflowViewState.IdRef="NClick_35" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="9948d0dd-e31f-47e8-a7d9-b201863ab0d4" Version="V3">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable BrowserURL="https://nis.rbc.com/nis/app/#/reports" ContentHash="-4bVxldsx0upOalNrJ0PSw" DesignTimeRectangle="517, 799, 25, 25" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'Select the Outstanding Day'" FullSelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl tag='SPAN' parentclass='ng-tns-c1685646730-0 p-datepicker-today ng-star-inserted' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='TABLE' /&gt;&lt;webctrl tag='SPAN' parentclass='ng-tns-c1685646730-0 p-datepicker-today ng-star-inserted' /&gt;" Guid="6fefa169-fb37-43cc-91a9-db2dfb2015b0" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAB0AAAAdCAYAAABWk2cPAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADQSURBVEhL7ZK9DYMwFISzXjq61C7dsQA1LTUD0CKxADWIAejZIH10gZhD5k8ClIcbn/QJeMh88pkHHMSttHt/xGG8VATGS0VgvFQE5rC0zkI8g9ePqBznbQ41zlTWrdYsYQ5KO6RZNd5XiHSOepjpBAXf6xBpa69Zw1yol1JezXxoYmpgB+a0tIi5o14a2Du1at+BOSEdJIsPlwl4zqqv+s/12ue3xbzqPZhjUusvNZiKi3j+vLnWgrnwI12H8VIRGC8VgXEjbZoGdzPt9L4AX6XYabOQzww8AAAAAElFTkSuQmCC" InformativeScreenshot="48d8b4080f9139efa66e6eeb83a52af6.png" Reference="8GC8MgTQHkKpnxBaCvUnXA/aczVgZ7_4UKgEtpBjIZDQg" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Note Issuance System' /&gt;" SearchSteps="FuzzySelector" Version="V2" Visibility="Interactive" />
+                </uix:NClick.Target>
+              </uix:NClick>
+              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Generate Report' for Outstanding Reports (PDF &amp; XLS)" sap:VirtualizedContainerService.HintSize="338,157" sap2010:WorkflowViewState.IdRef="NClick_36" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="9948d0dd-e31f-47e8-a7d9-b201863ab0d4" Version="V3">
+                <uix:NClick.DelayAfter>
+                  <InArgument x:TypeArguments="x:Double">
+                    <CSharpValue x:TypeArguments="x:Double" sap2010:WorkflowViewState.IdRef="CSharpValue`1_130">in_Delay</CSharpValue>
+                  </InArgument>
+                </uix:NClick.DelayAfter>
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable BrowserURL="https://nis.rbc.com/nis/app/#/reports" DesignTimeRectangle="764, 888, 136, 45" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'Generate Report'" FullSelectorArgument="&lt;webctrl tag='INPUT' type='submit' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='INPUT' type='submit' class='right-button submitLocalStyle' aaname='Generate Report' check:text='Generate Report' /&gt;" Guid="1acd86dc-c724-49fe-94c9-503d05ba2230" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAIwAAAAxCAYAAAAIlEGVAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAUzSURBVHhe7ZjBSiNLFIbnTXyEPIJLH8Gly8BsXLpxK7PsxSxciWSji1m4FBdyL7oIRNCgSAiDCUxkIhJMQghBQzj3nL+q20rnJJ3cyIzK+eE7aPXp7tNVf3dV5QuZTAvIDGNaSIlhvnw9N4yZwCeILC3BMELgE0SWlmAYIfAJIktLMIwQ+ASRpSUYRgh8gsjSEgwjBD5BZGkJhhECnyCytATDCIFPEFlagmGEwCeILC3BMELgE0SWlmAYIfAJIktLMIwQ+ASRpSUYRgh8gsjSEgwjBD5BZGkJhhECnyCytATDCIFPEFlagmGEwCeILC1hbnZ+0mFzSAN/LaIRtZtPFH1Xcj8h+03/2KFehlS5vac1Jf+jIlreMNt39E+fL9Dv0m7hEm25wm8qSttLl75tK+d8MmCYfoc2k7ZL2jjrUpubm7fVsdyPjGhpw2zcPvPZAzpKf00KTyT9WCmm2t8bPzoY2GXqnDSMUKLDFrd3n2h9rP0v8AbPKIiWNMw1HUmntFq0qh4fZ+XgkSry5YFG1Kz9pnX/BdqsDvGV2r/o4+Ggfp8OD0rBNW4oqg5epz4+fnTkvmpxp9SrXRg1Gaj0dMlTxdVZhVbie4YKBn1WrWnmN8yM+r8+UIWbrsrhfXlau/iJWuPrrp12qB7U1W4+Uj6py12j2ehQ5UWO9+jfGc+4KKIlDeOno+aDcizF90eqc2q7Wqcc/587aPn/73A8Hrx27d4NzE7dTWvdlu/wEn2rcc4Lm2iPTbRdoagh5/RpP+Lj3jBi3vyOvycTNSSFp8ZIjHdJW7jPMx3v+Rzt7cuoNc30KWnE1732bRn1+8Gmlx7tY2qPax1R8cS/NL7WdvUXrXIf5QpsLjbGgPvfvbD+Gv0eRXKPuJ7384VRDINRflVc5FZt5NY0ybnxYHYoz387w3DnBcfH2iI3iPVyPADMXjDtzdsp6TzlvKxa47YYddHLkoEVwyEvq34/2OOm/EVF+VI07vE/auC6tpLj57R6Id+r+AXQrsG8a8MkuOJdkf7zrMm/mZmG8Q+tCfeY0iluamEDpJTkTZyXXWt4fWHyC1OidZ5aZSiTRW9W/VMGO752flpfj9X/7g3jO1ddwyiGmbEAnNcwV6evx8fQOmX7nq7kDeUOd1OSkjdxXnatafQ1TGp9l1V/hmE2P4dhzmm9LLsk/iQW0sdCw5zz/C1veY92pywcMw0TuXXE1G2q1ila20kXb37SpuRk1ZpGN0yqPat+dbCrdNyVkx6w8NWmpBUsAT7MlMTI7zDyULKj+XHtVvQ7VdqVBR4v2JI3ym+z2zwfu0XtDW2V+1Q8dW9+pmH4zY8aMpC8hT+QRWGJVuX3nkaLNuS41il+3dCu+cVr4YGuum56SvL8OqJZvnk9L6PWNHMZJqt+P9jhojdflh2V9KG+6F3Z0xe9E4bRnvF/IFreMIKs+Hm72MZWzmnABjo+ddvXOC/H3+jXLWOc4x4i2zAM32e39owvhNOQt5B+WznlLVo766Ed4t3D7onLq1/Eg39NEczN4mnIDd7sWtNMMwwWz2KQ+DeqWfXHg93kLXFy3yHVb+8W3lZPGGbKMy6K6G0MY7wB0wb7/QCfILK0BONPYoYxFsIMY3wy4BNElpZgGCHwCSJLSzCMEPgEkaUlGEYIfILI0hIMIwQ+QWRpCYYRAp8gsrQEwwiBTxBZWoJhhMAniCwtwTBC4BNElpZgGCHwCSJLSzCMEPgEkaUlGEYIfILI0hIMIwQ+QWRpCYYRAp8gmkxzygxjWkBE/wEtRDe7yBj8ewAAAABJRU5ErkJggg==" InformativeScreenshot="2669c087bb4d9c6cc6716baf5cbdcdca.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Note Issuance System' /&gt;" SearchSteps="FuzzySelector, Image" Version="V2" Visibility="Interactive">
+                    <uix:TargetAnchorable.Anchors>
+                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                        <uix:Target DesignTimeRectangle="251, 145, 1140, 26" ElementType="Text" FriendlyName="'Generate Report'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;app-root&amp;gt;div&amp;gt;main&amp;gt;app-select-report&amp;gt;app-reports&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;h3' tag='H3' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' tag='H3' class='' aaname='Generate Report : Outstanding Notes' check:innerText='Generate Report : Outstanding Notes' /&gt;" ImageBase64="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" SearchSteps="FuzzySelector, Image" />
+                      </scg:List>
+                    </uix:TargetAnchorable.Anchors>
+                  </uix:TargetAnchorable>
+                </uix:NClick.Target>
+              </uix:NClick>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="338,143" sap2010:WorkflowViewState.IdRef="LogMessage_19" Level="Info">
+                <ui:LogMessage.Message>
+                  <InArgument x:TypeArguments="x:Object">
+                    <CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_131">"Outstanding Report Opened in Browser"</CSharpValue>
+                  </InArgument>
+                </ui:LogMessage.Message>
+              </ui:LogMessage>
+            </Sequence>
+            <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Always" DisplayName="Export Outstanding PDF &amp; XLS Versions of the File" sap:VirtualizedContainerService.HintSize="400,52" sap2010:WorkflowViewState.IdRef="NApplicationCard_9" InteractionMode="DebuggerApi" OpenMode="IfNotOpen" ScopeGuid="3cd99cf2-96a6-471e-b35a-4dda3ff12b26" Version="V2">
+              <uix:NApplicationCard.Body>
+                <ActivityAction x:TypeArguments="x:Object">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="1012,3887" sap2010:WorkflowViewState.IdRef="Sequence_45">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <uix:NCheckState DisplayName="Check App State 'RBC - NI'" sap:VirtualizedContainerService.HintSize="950,3772" sap2010:WorkflowViewState.IdRef="NCheckState_6" ScopeIdentifier="3cd99cf2-96a6-471e-b35a-4dda3ff12b26" Version="V3">
+                      <uix:NCheckState.IfExists>
+                        <Sequence DisplayName="Target appears Outstanding PDF &amp; XLS" sap:VirtualizedContainerService.HintSize="496,3555" sap2010:WorkflowViewState.IdRef="Sequence_43">
+                          <Sequence.Variables>
+                            <Variable x:TypeArguments="x:String" Name="strPath" />
+                            <Variable x:TypeArguments="x:String" Name="strDestination" />
+                          </Sequence.Variables>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:GetLastDownloadedFile FileResource="{x:Null}" IgnoreFiles="{x:Null}" Timeout="{x:Null}" DisplayName="Wait for Download" DownloadFolder="C:\Users\FinancialSystems\Downloads" sap:VirtualizedContainerService.HintSize="434,1091" sap2010:WorkflowViewState.IdRef="GetLastDownloadedFile_5">
+                            <ui:GetLastDownloadedFile.Body>
+                              <ActivityAction>
+                                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="400,835" sap2010:WorkflowViewState.IdRef="Sequence_39">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <uix:NGetText DisplayName="Get Text 'RBC - NI' for Outstanding PDF" sap:VirtualizedContainerService.HintSize="338,157" sap2010:WorkflowViewState.IdRef="NGetText_3" ScopeIdentifier="3cd99cf2-96a6-471e-b35a-4dda3ff12b26" Version="V3">
+                                    <uix:NGetText.Target>
+                                      <uix:TargetAnchorable BrowserURL="https://nis.rbc.com/nis/reports/Reports/CrystalViewer/ViewReport.aspx" DesignTimeRectangle="437, 144, 277, 17" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'Trades Outstanding as o…'" FullSelectorArgument="&lt;webctrl src='/nis/reports/Reports/CrystalViewer/ViewReport.aspx' tag='IFRAME' /&gt;&lt;webctrl id='bobjid_1696350294923' tag='TABLE' /&gt;&lt;webctrl tableRow='7' tag='IFRAME' /&gt;&lt;webctrl isleaf='1' parentid='Text10' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl src='/nis/reports/Reports/CrystalViewer/ViewReport.aspx' tag='IFRAME' /&gt;&lt;webctrl id='bobjid_1696350294923' tag='TABLE' /&gt;&lt;webctrl tag='IFRAME' /&gt;&lt;webctrl isleaf='1' parentid='Text10' tag='SPAN' type='' class='fc751ee911-b153-443e-9de0-81d146ebcd47-1' /&gt;" Guid="7d864028-ccac-4c09-99c9-761ea7ca6902" ImageBase64="" InformativeScreenshot="723a52e3dc2795d4305b7536038e6e20.png" ScopeSelectorArgument="&lt;html app='chrome.exe' htmlwindowname='Reports1696350292607' title='ViewReport' /&gt;" SearchSteps="FuzzySelector" Version="V2" Visibility="Interactive">
+                                        <uix:TargetAnchorable.Anchors>
+                                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                            <uix:Target DesignTimeRectangle="76, 144, 65, 17" ElementType="Text" FriendlyName="'RBC - NI'" FullSelectorArgument="&lt;webctrl src='/nis/reports/Reports/CrystalViewer/ViewReport.aspx' tag='IFRAME' /&gt;&lt;webctrl id='bobjid_1696350294923' tag='TABLE' /&gt;&lt;webctrl tableRow='7' tag='IFRAME' /&gt;&lt;webctrl aaname='RBC - NI' parentid='Text15' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl src='/nis/reports/Reports/CrystalViewer/ViewReport.aspx' tag='IFRAME' /&gt;&lt;webctrl id='bobjid_1696350294923' tag='TABLE' /&gt;&lt;webctrl tag='IFRAME' /&gt;&lt;webctrl aaname='RBC - NI' parentid='Text15' tag='SPAN' type='' class='fc751ee911-b153-443e-9de0-81d146ebcd47-1' check:innerText='RBC - NI' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAEUAAAAVCAYAAAAQAyPeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFlSURBVFhH7ZbRFYMgDEXZkLEYhVEcxTFSUEMeEBWFtj+8c/JRAyS5xFhDU5UmFEUTiqIJRRFAWcgZQ+bUXFghWr1V1ohZvx4rCy2ufe1jQQ0Os40SX3JxLtYTZvAASjQBcwclWlns4vR1mxWJvRPWYCkP3wmlgqz4EhSlmFQ8+ARinizC7e+Y4mKz3IZDWcnb3ceJX0FJwVJn3Z895hUqoGTxRkNZPdnC19QpsvjYn8+l8ZIarOUOvLiYITMFNmPbq4aBqs75lrBwALR14ReglN1zCyVYeiX+AiX+5LhxjnVC4U1XQ7BtphxDtff1gdc3O7dSWYPMQuPcGChR+BnF55dQIJl9j342a4uhOVivoQRVe8H3Fgo+x81tnSJnSdf95pOMNZT/jwZACYIiOXEs5tSyYNDKmmlwH6vhYtHXBSVIaO83fQvlrEgAzNbfIazzGjDfB1CmWBOKoglF0YSiaEKpRPQBd3MaU+UilT0AAAAASUVORK5CYII=" SearchSteps="FuzzySelector, Image" />
+                                          </scg:List>
+                                        </uix:TargetAnchorable.Anchors>
+                                      </uix:TargetAnchorable>
+                                    </uix:NGetText.Target>
+                                    <uix:NGetText.TextString>
+                                      <OutArgument x:TypeArguments="x:String">
+                                        <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_55">io_NewRBCNISOutstandingByDateFileName</CSharpReference>
+                                      </OutArgument>
+                                    </uix:NGetText.TextString>
+                                  </uix:NGetText>
+                                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click the Printer icon for Outstanding PDF" sap:VirtualizedContainerService.HintSize="338,157" sap2010:WorkflowViewState.IdRef="NClick_37" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="3cd99cf2-96a6-471e-b35a-4dda3ff12b26" Version="V3">
+                                    <uix:NClick.Target>
+                                      <uix:TargetAnchorable BrowserURL="https://nis.rbc.com/nis/reports/Reports/CrystalViewer/ViewReport.aspx" DesignTimeRectangle="39, 84, 16, 16" DesignTimeScaleFactor="1" ElementType="Icon" FriendlyName="'IMG IconImg_CrystalRepo…'" FullSelectorArgument="&lt;webctrl src='/nis/reports/Reports/CrystalViewer/ViewReport.aspx' tag='IFRAME' /&gt;&lt;webctrl id='CrystalReportViewer_toptoolbar_print' tableRow='1' tag='TABLE' /&gt;&lt;webctrl id='IconImg_CrystalReportViewer_toptoolbar_print' tableRow='1' tag='IMG' /&gt;" FuzzySelectorArgument="&lt;webctrl src='/nis/reports/Reports/CrystalViewer/ViewReport.aspx' tag='IFRAME' /&gt;&lt;webctrl id='CrystalReportViewer_toptoolbar_print' tag='TABLE' /&gt;&lt;webctrl id='IconImg_CrystalReportViewer_toptoolbar_print' type='' tag='IMG' class='' aaname='Print this report' /&gt;" Guid="b56b1c8d-0bf3-45c6-b9cf-802f0050bc32" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAF0SURBVDhPzZO/S8NAGIb9g/wXHB0EwcVBcHDo4iJu6mJdtJsWpRS0LqIgWDJlsnZpxSAGf8RfYFskBolSW6iaTNp88n4lJeldo0gRh4fjcvc9fHfvpS9/XKJe8rfCvWy2K4eaznTWdBWiyLIsZi69L9Co2bSW3hCkUqEv8zyPsrpNSaUcomQ77U6xL1grFa6splgGDi6qAviOPaqqCrXfCi+tN4FfC3G0x/cPgfKzQ/Px+M+EUxmDhU91V9odwPpwLEGjswrFlhSu8etDwpmdW5pIntD0co4Suzc8lwHJ+GKRGZjMMIIQAlk3p3c1KlxVOe2tvEmpnEkj6hgD0dBCQS5EZ06zFYQP5i9uk+8MciSsHNm9EZ5VGm2hPtjPoCZS+Op+hoSYIxykrVVaHeLY65vbHAzCiBTiSaAjiDD6TwTHxT2iOwjxtyAcCCHTjAdRaNzXOb0o8EyCdMpCQoBFoF+3xiDFc1M6D9aDkLAX/Hdhib4A7bQiMC5JCGgAAAAASUVORK5CYII=" InformativeScreenshot="506de99f6a951c523f579a792634801c.png" ScopeSelectorArgument="&lt;html app='chrome.exe' htmlwindowname='Reports1696350292607' title='ViewReport' /&gt;" SearchSteps="FuzzySelector, Image" Version="V2" Visibility="Interactive">
+                                        <uix:TargetAnchorable.Anchors>
+                                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                            <uix:Target DesignTimeRectangle="76, 144, 65, 17" ElementType="Text" FriendlyName="'RBC - NI'" FullSelectorArgument="&lt;webctrl src='/nis/reports/Reports/CrystalViewer/ViewReport.aspx' tag='IFRAME' /&gt;&lt;webctrl id='bobjid_1696350294923' tag='TABLE' /&gt;&lt;webctrl tableRow='7' tag='IFRAME' /&gt;&lt;webctrl aaname='RBC - NI' parentid='Text15' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl src='/nis/reports/Reports/CrystalViewer/ViewReport.aspx' tag='IFRAME' /&gt;&lt;webctrl id='bobjid_1696350294923' tag='TABLE' /&gt;&lt;webctrl tag='IFRAME' /&gt;&lt;webctrl aaname='RBC - NI' parentid='Text15' tag='SPAN' type='' class='fc751ee911-b153-443e-9de0-81d146ebcd47-1' check:innerText='RBC - NI' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAEUAAAAVCAYAAAAQAyPeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFlSURBVFhH7ZbRFYMgDEXZkLEYhVEcxTFSUEMeEBWFtj+8c/JRAyS5xFhDU5UmFEUTiqIJRRFAWcgZQ+bUXFghWr1V1ohZvx4rCy2ufe1jQQ0Os40SX3JxLtYTZvAASjQBcwclWlns4vR1mxWJvRPWYCkP3wmlgqz4EhSlmFQ8+ARinizC7e+Y4mKz3IZDWcnb3ceJX0FJwVJn3Z895hUqoGTxRkNZPdnC19QpsvjYn8+l8ZIarOUOvLiYITMFNmPbq4aBqs75lrBwALR14ReglN1zCyVYeiX+AiX+5LhxjnVC4U1XQ7BtphxDtff1gdc3O7dSWYPMQuPcGChR+BnF55dQIJl9j342a4uhOVivoQRVe8H3Fgo+x81tnSJnSdf95pOMNZT/jwZACYIiOXEs5tSyYNDKmmlwH6vhYtHXBSVIaO83fQvlrEgAzNbfIazzGjDfB1CmWBOKoglF0YSiaEKpRPQBd3MaU+UilT0AAAAASUVORK5CYII=" SearchSteps="FuzzySelector, Image" />
+                                          </scg:List>
+                                        </uix:TargetAnchorable.Anchors>
+                                      </uix:TargetAnchorable>
+                                    </uix:NClick.Target>
+                                  </uix:NClick>
+                                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Export' for Outstanding PDF" sap:VirtualizedContainerService.HintSize="338,157" sap2010:WorkflowViewState.IdRef="NClick_38" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="3cd99cf2-96a6-471e-b35a-4dda3ff12b26" Version="V3">
+                                    <uix:NClick.DelayAfter>
+                                      <InArgument x:TypeArguments="x:Double">
+                                        <CSharpValue x:TypeArguments="x:Double" sap2010:WorkflowViewState.IdRef="CSharpValue`1_195">in_Delay</CSharpValue>
+                                      </InArgument>
+                                    </uix:NClick.DelayAfter>
+                                    <uix:NClick.Target>
+                                      <uix:TargetAnchorable BrowserURL="https://nis.rbc.com/nis/reports/Reports/CrystalViewer/ViewReport.aspx" DesignTimeRectangle="714, 644, 32, 12" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'Export'" FullSelectorArgument="&lt;webctrl src='/nis/reports/Reports/CrystalViewer/ViewReport.aspx' tag='IFRAME' /&gt;&lt;webctrl css-selector='body&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table' tableCol='1' tableRow='1' tag='TABLE' /&gt;&lt;webctrl tableRow='1' tag='A' /&gt;" FuzzySelectorArgument="&lt;webctrl src='/nis/reports/Reports/CrystalViewer/ViewReport.aspx' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='A' class='wizbutton' aaname='Export' check:innerText='Export' /&gt;" Guid="da5ee4cc-b6ea-4102-9e83-b1a7a73cc3fe" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACQAAAAQCAYAAAB+690jAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJvSURBVEhLzZD9a1JRGMef/6w5Ubf1xwwTm7uI1Q9jSGPDYQ5i/TRwbCTaHEmjCYPZ8qW9US2tGV5zxoxZGJPc7Ntzruder6soVuCED+c8n/N9nnOu1D5vo33+He22QOx1+uOo1TrDWescYm0Za/8cNZvf0DxlxGqmT44ajVM0Gk2J2Ov0x1G9/hX1egP1tTsgop/wrfGZlpG5nvXf3Jv56yBfssdRrfYFGonb/IBbSOi15NPx5576f7qElz/a+7TH0dHRCarVExzFffwgH+JcG07u4wo3Kk9MuRGEdg8QchCUuXk45L+pxLu9u6ERzQkcoYOuU3xQhHPfMM71PgGV1WOopRrUmNcIdBlGMFtDWX2JoF3s9VV3nLHfR07l/qjo9+KRmCf3MZ5bVh/Dw7M80RpywWEjI+6NjXG/J6HdL2oBFQ+rKB5+RDGicFhBRKulK/Iq0OpVuHmwLbAn3R4CNoL7oZ4T50MIPK8iHRgCuVeN3ohb9O13vG0OaXmH8OacgAr5CvL5DygsjfODxrHMteEM2G2GYBX/mmtFuh3MWAmuJT2zAhc5MLNZwea0w5SrYNlFsE5vIyW89R5S8o4l9uacgF6/KkEj7OEHebCo1xqqJIupQTumNkpYdBKcYd3xQGe0k9H6xzr94TE5S+SicPKHOMMlbNy1gwaD2JDzxSxyxjr90tH+3ntoLNzkIRy4yOgD+C0Eiz/Tya3PwkI2+NczHW+xGdnRBTmLSfq7Xu/VnGUWyQsZcx/tbL/D5djC5ABhYHLrF2eXh3LZAl5k3yKnUTD4s0th4ho/aOKZyf1t7+8dZdJ5XCUIV+oH/AAPPXqP/jrQdwAAAABJRU5ErkJggg==" InformativeScreenshot="9b2f6b9889cc8a5c6e79d868c198e541.png" ScopeSelectorArgument="&lt;html app='chrome.exe' htmlwindowname='Reports1696350292607' title='ViewReport' /&gt;" SearchSteps="FuzzySelector, Image" Version="V2" Visibility="Interactive">
+                                        <uix:TargetAnchorable.Anchors>
+                                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                            <uix:Target DesignTimeRectangle="471, 348, 67, 13" ElementType="Text" FriendlyName="'Print to PDF'" FullSelectorArgument="&lt;webctrl src='/nis/reports/Reports/CrystalViewer/ViewReport.aspx' tag='IFRAME' /&gt;&lt;webctrl class='dlgTitle' tableRow='1' tag='TABLE' /&gt;&lt;webctrl tableRow='1' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl src='/nis/reports/Reports/CrystalViewer/ViewReport.aspx' tag='IFRAME' /&gt;&lt;webctrl class='dlgTitle' tag='TABLE' /&gt;&lt;webctrl type='' tag='SPAN' class='titlezone' aaname='Print to PDF' check:innerText='Print to PDF' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAEcAAAARCAYAAACPZ7H1AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAO+SURBVFhH7VdZT1NBFO5P4J2w/BcF1ERIeObFBPgBYAIRXwBZSghLQQkEBBK1tuwI3YtAWUNLFRVkk+qTCgkqJaJgjnNmuZ27QG98MuJNvsyc+b5z5sx37+1ieeJdg9loDPYPj+Dn6Rlc1gvPvn94DNOre4CeODwrYJmL7lBycnISsrOzIT09HVJSUi4V8Mx4do/HQ71ATwb9q2A5OIyD2+02TLqM8Hq9cPAlDkOBKFhOz35R15C4ci0P2vvHYTj4UsHI1JrhPFlsNu8iThv/qTaZrq1vjJ4dPUAvfpBXDDkLPkapqamUaCei0eevaILReBF3ntaszsxoRqPVmtXdJw8FepCZmUlfLVyn5uAiIq+gRIXCjnkYn3lDgeLEPATWEtRUgnVCzWm14/YWVq/GZawT/L0JPXdOzObzvAc1yuyM76zRc4UPQkoNZV8JwodzzSlzrNPkLl5cxM9C6xRinmwUc9kcQ52jVeG1nE6rWpuHBn6DGlz6WOmfmIX6xx2V6j6kvkRN2RyMdeaUOzdgYm4D7J2sWFHnojLPq22FcjoO8kaYXuFl1LpJHTfTSxD1Gc7h3XYoktdpLTkPsZgww83WumoTNeS5od7Jb4pUWzYHY705A5vgWliCxlIsVAWNnk1wdFWxQgJ1Q5xneoWv8+hyXQM2icPaGuh4DzOs9Ck4SCxqF3UtqfO0+4i8Aht0E767DufiPAyiFl0T+0qQzUH9hZ85d4Z2wbe8C4Pd/PD1fhr7lsPQxM1BjZoXXBU0+Yl2qE2Tq4GW18Z+JxRjXOqEQTlP6iEBvifhe+vZmjgDQvRJ1wz6ks3BWGeOXEzg7zYnYYgMvTnJ+0pqTsXIHgRW9iiJI2K4p5oVsgY4F4bm22xz1CvmUD7Cm6iG5iDJH2lXOLkmq0NiwZMm2XoAKjAmZgyTWOxd3B1W55F9WA/V9LCCE3yfFbnEebRnkPsSOYbm4Hc7Ll7NvQUVozGYDm/RBByD4RiMPRSHD3IuAjZuzt3RLWlj5JeVpm1TWzRu4Vqhx5pij2B4VamFoPtPOdjTImD1cq3cm6hbRW+C6FXw/dwcGcU9kYRulH/m8DP1DgSoB+J3DtZQ/UK+kZsPj0f8MLu6AzORbd1otJZMa1ZnZjSj0WrN6B4N++D6zXzqAXqBnuC65Wv8+///VhJ8Ph+gJ6Eoea22dj/SxwgNysrKgrS0NMOkfxkZGRmQk5ND/3TitbH3CVai5LVaev0Btt99hm/HJ3BGHqfLeuGrdBQ/gbfv9yH8IgYLazH4DWjKfrs5C5qjAAAAAElFTkSuQmCC" SearchSteps="FuzzySelector, Image" />
+                                          </scg:List>
+                                        </uix:TargetAnchorable.Anchors>
+                                      </uix:TargetAnchorable>
+                                    </uix:NClick.Target>
+                                  </uix:NClick>
+                                  <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process" sap:VirtualizedContainerService.HintSize="338,133" sap2010:WorkflowViewState.IdRef="KillProcess_5" ProcessName="Acrobat" />
+                                </Sequence>
+                              </ActivityAction>
+                            </ui:GetLastDownloadedFile.Body>
+                            <ui:GetLastDownloadedFile.File>
+                              <OutArgument x:TypeArguments="si:FileInfo">
+                                <CSharpReference x:TypeArguments="si:FileInfo" sap2010:WorkflowViewState.IdRef="CSharpReference`1_56">io_DownloadedPDFFile</CSharpReference>
+                              </OutArgument>
+                            </ui:GetLastDownloadedFile.File>
+                          </ui:GetLastDownloadedFile>
+                          <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="434,52" sap2010:WorkflowViewState.IdRef="CommentOut_3">
+                            <ui:CommentOut.Body>
+                              <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="496,163" sap2010:WorkflowViewState.IdRef="Sequence_86">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Always" DisplayName="Use Application: CrystalReportViewer.pdf - Adobe Acrobat Reader (64-bit)" sap:VirtualizedContainerService.HintSize="431,52" sap2010:WorkflowViewState.IdRef="NApplicationCard_8" OpenMode="IfNotOpen" ScopeGuid="02b266de-2bbd-4e73-b51f-be0eeb5d25dd" Version="V2">
+                                  <uix:NApplicationCard.Body>
+                                    <ActivityAction x:TypeArguments="x:Object">
+                                      <ActivityAction.Argument>
+                                        <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                                      </ActivityAction.Argument>
+                                      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="400,105" sap2010:WorkflowViewState.IdRef="Sequence_40">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                      </Sequence>
+                                    </ActivityAction>
+                                  </uix:NApplicationCard.Body>
+                                  <uix:NApplicationCard.TargetApp>
+                                    <uix:TargetApp Area="-8, -8, 1936, 1056" Arguments="c:\users\financialsystems\downloads\crystalreportviewer.pdf" FilePath="C:\Program Files\Adobe\Acrobat DC\Acrobat\acrobat.exe" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJPSURBVFhH1ZY9aBRBFMevUVCUKIliOPHjEPzIkTRiOAWxSBobLawU7MQ2aBdFBBHkIHiFVjYhcGijyNkIKS5dIHCQSs6rQgq90mZvd7Z5vv9bNu7ODHGyN5xY/Jh9b96895+Zt8uWiOifYjjisdIRZo2hIdhiFvTcNgwHL1yLz45vD1a/UhAEe+fnD4oWH/2KJ/YFkos3pNfIYjh4AYUfP9iT74HBxjrFE/sHnG9zNxGGAwJsCYvgIsJw+BQA/iYiZwBXAdHrV0nDTR6k4HvXGpOSiJCeeK7XyxnAVYCaqVD4fkVERIuPrTFZwjdL2xy7pdfLGcBVQDx1SkZ15RKp+3eMeQN+O5Bbr5czgPMJzNcobNQlKU7CFqPjVUD47i3FJw6QOnfcOm/DqwA0HmJdmjDFqwA0nrp7m9TVaVK35qwxOl4FqDPjcvdhe5Xi8iFS5yelMePyYSmk5rhHvnzKrfEiIHr5TJLL/d+8TqpyLCl48eSfq+BRTma6kls7lAB8eNTpo0nR2SlS12bkGvAm4BSihYeJKBRm0BvqxuVcjsIC5K65MHYWvXiadL6t8TCP3nhwTwTr84UFwBc94cT8wcEzXkE9xoXCAnAC8GPntp25UliAL/5/AdVqVajX6zt2rVajVqtlzNnwIqDf78uY2r1eT0Skvt3wIgAFswLSMQWnkV2TxYsA7LbZbO7YnU5ntCeg2yjebrdHI2BYnAXgJ9KWYBjkx9RRwGd1odwddL9ZExUBuZCTcy/r9XJGCgc2oNYzDVstwzFqrM7RQaXfNljUiwb3UnIAAAAASUVORK5CYII=" InformativeScreenshot="9776739a2013fcb480f8151d80a91c24.png" Selector="&lt;wnd app='acrobat.exe' cls='AcrobatSDIWindow' title='CrystalReportViewer.pdf - Adobe Acrobat Reader (64-bit)' /&gt;" Title="CrystalReportViewer.pdf - Adobe Acrobat Reader (64-bit)" />
+                                  </uix:NApplicationCard.TargetApp>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </uix:NApplicationCard>
+                              </Sequence>
+                            </ui:CommentOut.Body>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:CommentOut>
+                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,143" sap2010:WorkflowViewState.IdRef="LogMessage_20" Level="Info">
+                            <ui:LogMessage.Message>
+                              <InArgument x:TypeArguments="x:Object">
+                                <CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_133">"Outstanding Report for PDF Exported"</CSharpValue>
+                              </InArgument>
+                            </ui:LogMessage.Message>
+                          </ui:LogMessage>
+                          <ui:GetLastDownloadedFile FileResource="{x:Null}" IgnoreFiles="{x:Null}" Timeout="{x:Null}" DisplayName="Wait for Download" DownloadFolder="C:\Users\FinancialSystems\Downloads" sap:VirtualizedContainerService.HintSize="434,1115" sap2010:WorkflowViewState.IdRef="GetLastDownloadedFile_6">
+                            <ui:GetLastDownloadedFile.Body>
+                              <ActivityAction>
+                                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="400,859" sap2010:WorkflowViewState.IdRef="Sequence_41">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Export' Button for Outstanding XLS" sap:VirtualizedContainerService.HintSize="338,157" sap2010:WorkflowViewState.IdRef="NClick_39" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="3cd99cf2-96a6-471e-b35a-4dda3ff12b26" Version="V3">
+                                    <uix:NClick.Target>
+                                      <uix:TargetAnchorable BrowserURL="https://nis.rbc.com/nis/reports/Reports/CrystalViewer/ViewReport.aspx" DesignTimeRectangle="89, 84, 16, 16" DesignTimeScaleFactor="1" ElementType="Icon" FriendlyName="'IMG IconImg_CrystalRepo…'" FullSelectorArgument="&lt;webctrl src='/nis/reports/Reports/CrystalViewer/ViewReport.aspx' tag='IFRAME' /&gt;&lt;webctrl id='CrystalReportViewer_toptoolbar_export' tableRow='1' tag='TABLE' /&gt;&lt;webctrl id='IconImg_CrystalReportViewer_toptoolbar_export' tableRow='1' tag='IMG' /&gt;" FuzzySelectorArgument="&lt;webctrl src='/nis/reports/Reports/CrystalViewer/ViewReport.aspx' tag='IFRAME' /&gt;&lt;webctrl id='CrystalReportViewer_toptoolbar_export' tag='TABLE' /&gt;&lt;webctrl id='IconImg_CrystalReportViewer_toptoolbar_export' type='' tag='IMG' class='' aaname='Export this report' /&gt;" Guid="801e941c-1da6-4cd7-aa9a-422c2b37ca09" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADaSURBVDhPY9hz4tZ/auJhaqBF2xGs4iBMtoG4DCXKQNWAEgT2L4EbCOKjqyXOQKAhyHxchoEw0S7Ex0fGZBmID5PlZXwYq4FeE8+hYJCB6GIqDccw9IEwhoEgxZceffr/798/OAZ5GZkPwiA1ILXo+lEM1Gw6Dlb4+uvf/x+//oFjdD5MDKQWpAfZDLiBIIlbz778P3rzHUkY5FpkQ1EMBEkmzr1EEr794st/reYTuA0EKQC5FISR2ch8ZHGQK7G6EBTAIJtAksRikHoQRo4clEihBh7sBt76DwBy+BiVRVdgBgAAAABJRU5ErkJggg==" InformativeScreenshot="4919fdefff60b5cc3c0de84154e3297a.png" ScopeSelectorArgument="&lt;html app='chrome.exe' htmlwindowname='Reports1696350292607' title='ViewReport' /&gt;" SearchSteps="FuzzySelector, Image" Version="V2" Visibility="Interactive">
+                                        <uix:TargetAnchorable.Anchors>
+                                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                            <uix:Target DesignTimeRectangle="76, 144, 65, 17" ElementType="Text" FriendlyName="'RBC - NI'" FullSelectorArgument="&lt;webctrl src='/nis/reports/Reports/CrystalViewer/ViewReport.aspx' tag='IFRAME' /&gt;&lt;webctrl id='bobjid_1696350294923' tag='TABLE' /&gt;&lt;webctrl tableRow='7' tag='IFRAME' /&gt;&lt;webctrl aaname='RBC - NI' parentid='Text15' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl src='/nis/reports/Reports/CrystalViewer/ViewReport.aspx' tag='IFRAME' /&gt;&lt;webctrl id='bobjid_1696350294923' tag='TABLE' /&gt;&lt;webctrl tag='IFRAME' /&gt;&lt;webctrl aaname='RBC - NI' parentid='Text15' tag='SPAN' type='' class='fc751ee911-b153-443e-9de0-81d146ebcd47-1' check:innerText='RBC - NI' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAEUAAAAVCAYAAAAQAyPeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFlSURBVFhH7ZbRFYMgDEXZkLEYhVEcxTFSUEMeEBWFtj+8c/JRAyS5xFhDU5UmFEUTiqIJRRFAWcgZQ+bUXFghWr1V1ohZvx4rCy2ufe1jQQ0Os40SX3JxLtYTZvAASjQBcwclWlns4vR1mxWJvRPWYCkP3wmlgqz4EhSlmFQ8+ARinizC7e+Y4mKz3IZDWcnb3ceJX0FJwVJn3Z895hUqoGTxRkNZPdnC19QpsvjYn8+l8ZIarOUOvLiYITMFNmPbq4aBqs75lrBwALR14ReglN1zCyVYeiX+AiX+5LhxjnVC4U1XQ7BtphxDtff1gdc3O7dSWYPMQuPcGChR+BnF55dQIJl9j342a4uhOVivoQRVe8H3Fgo+x81tnSJnSdf95pOMNZT/jwZACYIiOXEs5tSyYNDKmmlwH6vhYtHXBSVIaO83fQvlrEgAzNbfIazzGjDfB1CmWBOKoglF0YSiaEKpRPQBd3MaU+UilT0AAAAASUVORK5CYII=" SearchSteps="FuzzySelector, Image" />
+                                          </scg:List>
+                                        </uix:TargetAnchorable.Anchors>
+                                      </uix:TargetAnchorable>
+                                    </uix:NClick.Target>
+                                  </uix:NClick>
+                                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click Dropdown for File Format for Outstanding XLS" sap:VirtualizedContainerService.HintSize="338,157" sap2010:WorkflowViewState.IdRef="NClick_40" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="3cd99cf2-96a6-471e-b35a-4dda3ff12b26" Version="V3">
+                                    <uix:NClick.Target>
+                                      <uix:TargetAnchorable BrowserURL="https://nis.rbc.com/nis/reports/Reports/CrystalViewer/ViewReport.aspx" DesignTimeRectangle="765, 421, 7, 12" DesignTimeScaleFactor="1" ElementType="Icon" FriendlyName="'IMG IconImg_iconMenu_ar…'" FullSelectorArgument="&lt;webctrl src='/nis/reports/Reports/CrystalViewer/ViewReport.aspx' tag='IFRAME' /&gt;&lt;webctrl aria-role='button' class='iconnocheck' tableRow='1' tag='TABLE' /&gt;&lt;webctrl tableRow='1' tag='IMG' /&gt;" FuzzySelectorArgument="&lt;webctrl src='/nis/reports/Reports/CrystalViewer/ViewReport.aspx' tag='IFRAME' /&gt;&lt;webctrl aria-role='button' class='iconnocheck' tag='TABLE' /&gt;&lt;webctrl type='' tag='IMG' class='' aaname='Click here to access File Format: options' /&gt;" Guid="062d98f3-bebe-45a9-9e83-4a7a1f66e268" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAAsAAAAQCAYAAADAvYV+AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAA1SURBVChTY3j66vN/YvGoYmRMvmIGBgYMjCKPzAEL4FAIlkMXAAtiUQgWxyaICw89xZ//AwDYwnv9JwZJ/AAAAABJRU5ErkJggg==" InformativeScreenshot="5cbcc0cb499bf082806187bd4a1bd93d.png" ScopeSelectorArgument="&lt;html app='chrome.exe' htmlwindowname='Reports1696350292607' title='ViewReport' /&gt;" SearchSteps="FuzzySelector, Image" Version="V2" Visibility="Interactive">
+                                        <uix:TargetAnchorable.Anchors>
+                                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                            <uix:Target DesignTimeRectangle="481, 392, 68, 13" ElementType="Text" FriendlyName="'File Format'" FullSelectorArgument="&lt;webctrl src='/nis/reports/Reports/CrystalViewer/ViewReport.aspx' tag='IFRAME' /&gt;&lt;webctrl css-selector='body&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table' idx='4' tableCol='1' tableRow='1' tag='TABLE' /&gt;&lt;webctrl tableRow='1' tag='LABEL' /&gt;" FuzzySelectorArgument="&lt;webctrl src='/nis/reports/Reports/CrystalViewer/ViewReport.aspx' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='LABEL' class='' aaname='File Format:' check:innerText='File Format:' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAEgAAAARCAYAAAB+bOp4AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAE7SURBVFhH7ZTNDYMwDIW7YRfoFEicuTIBx6zBhSlAYobCEq5K4sSB2Ak/olKVJ1mqbOK8fHXygCxRGVBEGVBEGVBEOwG9oa0KeL4KaEaT+nNZQIPSB/dC9QCjcr+PApo7KGnfJWpoZ1O/W+in6mAyKU4bQPLBTwJKMHSLLgWEE7Q02wKaulrXTZTdWxeoREM9NGS9+4bspbSHZsRcDaWp6TztoWBYrcfQ3pg841G8YstCCZCpIRTdI3B1cHMvvgfBfuZQzHXGcID8/XG9dAs8byEYqYD2TFAIKtY8cRO0yeMkUHi0H+bCB8VptlNsAWIIgBhdAmizZq1fAPJ8J0wQo3Nv0MoEK9YQ9pOv2ClAS68EQIzH04+0rdswJqjEfyzhkT4CiKx34bzhee33MUBZYWVAEWVAEWVAogA+TYBq2ElNzjsAAAAASUVORK5CYII=" SearchSteps="FuzzySelector, Image" />
+                                          </scg:List>
+                                        </uix:TargetAnchorable.Anchors>
+                                      </uix:TargetAnchorable>
+                                    </uix:NClick.Target>
+                                  </uix:NClick>
+                                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Microsoft Excel' Format for Outstanding XLS" sap:VirtualizedContainerService.HintSize="338,157" sap2010:WorkflowViewState.IdRef="NClick_41" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="3cd99cf2-96a6-471e-b35a-4dda3ff12b26" Version="V3">
+                                    <uix:NClick.Target>
+                                      <uix:TargetAnchorable BrowserURL="https://nis.rbc.com/nis/reports/Reports/CrystalViewer/ViewReport.aspx" DesignTimeRectangle="547, 515, 178, 12" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'Microsoft Excel'" FullSelectorArgument="&lt;webctrl src='/nis/reports/Reports/CrystalViewer/ViewReport.aspx' tag='IFRAME' /&gt;&lt;webctrl css-selector='body&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table' idx='3' tableCol='1' tableRow='1' tag='TABLE' /&gt;&lt;webctrl tableRow='4' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl src='/nis/reports/Reports/CrystalViewer/ViewReport.aspx' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='SPAN' class='' aaname='Microsoft Excel (97-2003) Data-Only' check:innerText='Microsoft Excel (97-2003) Data-Only' /&gt;" Guid="cb0260b8-514f-4259-9e3a-5cc63e3adcbe" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAALYAAAAQCAYAAAC7tYX3AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAP1SURBVGhD7VhLblsxDPQB7fN014WdC7QnCJwD9Ag2cpAEOURRZPUqUvwMKek5Td0iMbQYwJYpcmY47/Wz+fnrdZmYuDXMYE/cJGawJ24SM9gTNwkP9vlu2Ww2y+bwGAqejjs+35/p++Oy3+yW+2f//b/g+WHZErcy+9v3widxZCj/hMr7GljT/rLc7+6WE31GHruH5Yl/p7uRF2np9VK/K6QnA3pYXwLN7tSbZ+m88NseX+RuxOmg9Y63+Mecezu5hLSzEa8AuhP09xGDvdsVM9BMN+16AflzoHFs/jDYyP3aGAeb+PmD716NFk7n3SVyGF0Da5Ul0ud6p+6kN2NUkz07Hfo6Gm/l4bi0++beW8D7Qh7Vu4vhfl+wH5Z7FE3CyptobybBcvGNoIO4R61XoWy81DlpePsUuHH49pE5bIDc//rFPjdmc10/2MF4rlvRUICcfWGjYJdzvZuCqZ6GJeSaNdj96pdq9jBXv8zX3rwCD7ycEYdOEHsBxQeneie+KB844+/oaUE/qIm3gntVb+rckiXthRxIY/Ixa2yCfSoNtYCab4+P8PTrciMxa8rEYPlAVMNMfRqzZBltAFFkPe+Z7/VigkG5EF/ljWcDDRaOWhO102cA1RufTgBTiGmO/n4JxinN5r7MEfkVgGf83UIWOdR++WzgLfhxOvtvo508lRp7sIKXiOhTPK86g3esQ/RbT9xl9IfQBJufhHCxt9y2kfUAw1A8wRYFT7WLS0vKIjsmBqTZLaifB7lnBqEaWrkZeN643nsWMI96b1veOPHtTD3WODqid3E2/2Y7Wgm2ojnHUDguBdu+B18692C/fxVsuwv6gY95b5n1Xm2wVfQZA37lYMt3N4nu/ONgq9l2t68hc3aM64MmBCzBvmPvQQAan3i2e+Mcq2dWm+cpeA5yf3uw8ywMldbiPf6se1A+jc7EWwE75P6mBbxHjRJo/FuGohNsWVYRjoJisCMxEwbErKd99+VwfyXComtNMDaL7JgYkGcH+CLpftWypkGXjjX9YHO98cGa2J/gs8cY1dB57VX7ak32xmucawwJgXi2XpkHeiaBRL/wM85tOch5mAsIPhNqPvRu5Ay+0j3oSf8QpqzmvXSDPRaEi6tE/I0rPZJhTFDqfMlijJzrkuJ5WowYp/38joBne0/D4Qf3tNmsbUVDAXL2RaN2BJ2DZuSBIWFtvfuAnoawXDlr+ubaAtlh7ZNCTHNCjwoOot2pQJ/dl6LjWHrIvLAT0LA/+ksL5xgCR8yH9AzaxTvqjzrzd4EHe+LdoCU0D9oHxui/+z4j8E8IxAz2VZDe2h8Zg7f154P+SdX3fQZ74iYxgz1xg3hdfgNWqZS4yjFKcgAAAABJRU5ErkJggg==" InformativeScreenshot="6bef4920ad5272b96ff71045420a4c7a.png" ScopeSelectorArgument="&lt;html app='chrome.exe' htmlwindowname='Reports1696350292607' title='ViewReport' /&gt;" SearchSteps="FuzzySelector, Image" Version="V2" Visibility="Interactive">
+                                        <uix:TargetAnchorable.Anchors>
+                                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                            <uix:Target DesignTimeRectangle="481, 392, 68, 13" ElementType="Text" FriendlyName="'File Format'" FullSelectorArgument="&lt;webctrl src='/nis/reports/Reports/CrystalViewer/ViewReport.aspx' tag='IFRAME' /&gt;&lt;webctrl css-selector='body&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;div&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table' idx='4' tableCol='1' tableRow='1' tag='TABLE' /&gt;&lt;webctrl tableRow='1' tag='LABEL' /&gt;" FuzzySelectorArgument="&lt;webctrl src='/nis/reports/Reports/CrystalViewer/ViewReport.aspx' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='LABEL' class='' aaname='File Format:' check:innerText='File Format:' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAEgAAAARCAYAAAB+bOp4AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAE7SURBVFhH7ZTNDYMwDIW7YRfoFEicuTIBx6zBhSlAYobCEq5K4sSB2Ak/olKVJ1mqbOK8fHXygCxRGVBEGVBEGVBEOwG9oa0KeL4KaEaT+nNZQIPSB/dC9QCjcr+PApo7KGnfJWpoZ1O/W+in6mAyKU4bQPLBTwJKMHSLLgWEE7Q02wKaulrXTZTdWxeoREM9NGS9+4bspbSHZsRcDaWp6TztoWBYrcfQ3pg841G8YstCCZCpIRTdI3B1cHMvvgfBfuZQzHXGcID8/XG9dAs8byEYqYD2TFAIKtY8cRO0yeMkUHi0H+bCB8VptlNsAWIIgBhdAmizZq1fAPJ8J0wQo3Nv0MoEK9YQ9pOv2ClAS68EQIzH04+0rdswJqjEfyzhkT4CiKx34bzhee33MUBZYWVAEWVAEWVAogA+TYBq2ElNzjsAAAAASUVORK5CYII=" SearchSteps="FuzzySelector, Image" />
+                                          </scg:List>
+                                        </uix:TargetAnchorable.Anchors>
+                                      </uix:TargetAnchorable>
+                                    </uix:NClick.Target>
+                                  </uix:NClick>
+                                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Export' for Outstanding XLS" sap:VirtualizedContainerService.HintSize="338,157" sap2010:WorkflowViewState.IdRef="NClick_42" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="3cd99cf2-96a6-471e-b35a-4dda3ff12b26" Version="V3">
+                                    <uix:NClick.Target>
+                                      <uix:TargetAnchorable BrowserURL="https://nis.rbc.com/nis/reports/Reports/CrystalViewer/ViewReport.aspx" DesignTimeRectangle="769, 614, 32, 12" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'Export'" FullSelectorArgument="&lt;webctrl src='/nis/reports/Reports/CrystalViewer/ViewReport.aspx' tag='IFRAME' /&gt;&lt;webctrl css-selector='body&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table&amp;gt;tbody&amp;gt;tr&amp;gt;td&amp;gt;table' idx='3' tableCol='1' tableRow='1' tag='TABLE' /&gt;&lt;webctrl tableRow='1' tag='A' /&gt;" FuzzySelectorArgument="&lt;webctrl src='/nis/reports/Reports/CrystalViewer/ViewReport.aspx' tag='IFRAME' /&gt;&lt;webctrl tag='TABLE' /&gt;&lt;webctrl type='' tag='A' class='wizbutton' aaname='Export' check:innerText='Export' /&gt;" Guid="9159eeb4-54db-45b9-bbcc-9736793895b2" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACQAAAAQCAYAAAB+690jAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJvSURBVEhLzZD9a1JRGMef/6w5Ubf1xwwTm7uI1Q9jSGPDYQ5i/TRwbCTaHEmjCYPZ8qW9US2tGV5zxoxZGJPc7Ntzruder6soVuCED+c8n/N9nnOu1D5vo33+He22QOx1+uOo1TrDWescYm0Za/8cNZvf0DxlxGqmT44ajVM0Gk2J2Ov0x1G9/hX1egP1tTsgop/wrfGZlpG5nvXf3Jv56yBfssdRrfYFGonb/IBbSOi15NPx5576f7qElz/a+7TH0dHRCarVExzFffwgH+JcG07u4wo3Kk9MuRGEdg8QchCUuXk45L+pxLu9u6ERzQkcoYOuU3xQhHPfMM71PgGV1WOopRrUmNcIdBlGMFtDWX2JoF3s9VV3nLHfR07l/qjo9+KRmCf3MZ5bVh/Dw7M80RpywWEjI+6NjXG/J6HdL2oBFQ+rKB5+RDGicFhBRKulK/Iq0OpVuHmwLbAn3R4CNoL7oZ4T50MIPK8iHRgCuVeN3ohb9O13vG0OaXmH8OacgAr5CvL5DygsjfODxrHMteEM2G2GYBX/mmtFuh3MWAmuJT2zAhc5MLNZwea0w5SrYNlFsE5vIyW89R5S8o4l9uacgF6/KkEj7OEHebCo1xqqJIupQTumNkpYdBKcYd3xQGe0k9H6xzr94TE5S+SicPKHOMMlbNy1gwaD2JDzxSxyxjr90tH+3ntoLNzkIRy4yOgD+C0Eiz/Tya3PwkI2+NczHW+xGdnRBTmLSfq7Xu/VnGUWyQsZcx/tbL/D5djC5ABhYHLrF2eXh3LZAl5k3yKnUTD4s0th4ho/aOKZyf1t7+8dZdJ5XCUIV+oH/AAPPXqP/jrQdwAAAABJRU5ErkJggg==" InformativeScreenshot="7a6044d8e3d518acd09555a35387896c.png" ScopeSelectorArgument="&lt;html app='chrome.exe' htmlwindowname='Reports1696350292607' title='ViewReport' /&gt;" SearchSteps="FuzzySelector, Image" Version="V2" Visibility="Interactive">
+                                        <uix:TargetAnchorable.Anchors>
+                                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                            <uix:Target DesignTimeRectangle="471, 348, 36, 13" ElementType="Text" FriendlyName="'Export'" FullSelectorArgument="&lt;webctrl src='/nis/reports/Reports/CrystalViewer/ViewReport.aspx' tag='IFRAME' /&gt;&lt;webctrl class='dlgTitle' idx='3' tableRow='1' tag='TABLE' /&gt;&lt;webctrl tableRow='1' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl src='/nis/reports/Reports/CrystalViewer/ViewReport.aspx' tag='IFRAME' /&gt;&lt;webctrl class='dlgTitle' tag='TABLE' /&gt;&lt;webctrl type='' tag='SPAN' class='titlezone' aaname='Export' check:innerText='Export' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACgAAAARCAYAAACvi+4IAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIXSURBVEhLzZJbTxNRFIXPP+QP9BV4pxob+0RV2vqAaSExTiqQEKnT2zRAtNqpiBgCaaVab/FC2vhHlrPPZXpmmBmOE2N8WNmz9v7OOnsmw/ZeTECye0NeTfyfsEl9k0zW6l/gfxZfsO2OfSX5tKwpF+WZ82qCzuCDrySfljXlojzrHn3kTZNqwoRZUy6usv3jzyA9vLuChUxIK3t4Iud0QLH6s4mP6+te3X+rHpyxg5Mv/MG6JwFbeNXXa1TvOtaUi7ufHb79CpK1JoBcQ3il+qNV+TXrqFOvUZl79axLcZ5UptAq7j8PZa5VkKOaL2ocqQJLZrBnp99AqhV1QGjROuMz2yoIX6xikWbZp7DpXLMqWOlVBp1TZ3JNyu+JRTJV1LQ8X8Wef1bwc7GX55cgbZcEcLstfFhqvpDZwLbqtzdEL9tAS/clB+tZYgtY7wfPU36rJhcs9a/kh+9PseD80n+yoDucgqSAvCM8DdWs8/gOny2VN7FEwd5CHZo5m+Ii6XfK80vUGZHnIk+c9/V3tDxa8Lr72WA0w+vRdz88oBs2drdkWNkFZ7vyv/NmTlcuqGl565wHE7sbyCzgwWDK73LCmV7PHTSx7LNV/iLUZ8fvfuDNxU+Y1Cs9bdmDGDbAR9SkGVV2Mr5Eau3Lf+5mA4dR878gNhxPcTqZwaSaMGHWlIur7OzTL4zeiyCqST4Na8pFZ87wG+SnMBr03nLmAAAAAElFTkSuQmCC" SearchSteps="FuzzySelector, Image" />
+                                          </scg:List>
+                                        </uix:TargetAnchorable.Anchors>
+                                      </uix:TargetAnchorable>
+                                    </uix:NClick.Target>
+                                  </uix:NClick>
+                                </Sequence>
+                              </ActivityAction>
+                            </ui:GetLastDownloadedFile.Body>
+                            <ui:GetLastDownloadedFile.File>
+                              <OutArgument x:TypeArguments="si:FileInfo">
+                                <CSharpReference x:TypeArguments="si:FileInfo" sap2010:WorkflowViewState.IdRef="CSharpReference`1_57">io_DownloadedXLSFile</CSharpReference>
+                              </OutArgument>
+                            </ui:GetLastDownloadedFile.File>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:GetLastDownloadedFile>
+                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,141" sap2010:WorkflowViewState.IdRef="LogMessage_21" Level="Info">
+                            <ui:LogMessage.Message>
+                              <InArgument x:TypeArguments="x:Object">
+                                <CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_134">"Outstanding Report for XLS Exported"</CSharpValue>
+                              </InArgument>
+                            </ui:LogMessage.Message>
+                          </ui:LogMessage>
+                          <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="434,132" sap2010:WorkflowViewState.IdRef="MultipleAssign_14">
+                            <ui:MultipleAssign.AssignOperations>
+                              <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_33">
+                                  <ui:AssignOperation.To>
+                                    <OutArgument x:TypeArguments="x:String">
+                                      <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_80">strPath</CSharpReference>
+                                    </OutArgument>
+                                  </ui:AssignOperation.To>
+                                  <ui:AssignOperation.Value>
+                                    <InArgument x:TypeArguments="x:String">
+                                      <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_187">io_DownloadedPDFFile.FullName</CSharpValue>
+                                    </InArgument>
+                                  </ui:AssignOperation.Value>
+                                </ui:AssignOperation>
+                                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_34">
+                                  <ui:AssignOperation.To>
+                                    <OutArgument x:TypeArguments="x:String">
+                                      <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_81">strDestination</CSharpReference>
+                                    </OutArgument>
+                                  </ui:AssignOperation.To>
+                                  <ui:AssignOperation.Value>
+                                    <InArgument x:TypeArguments="x:String">
+                                      <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_188">in_RBCNISReportFolder+io_NewRBCNISOutstandingByDateFileName+io_DownloadedPDFFile.Extension</CSharpValue>
+                                    </InArgument>
+                                  </ui:AssignOperation.Value>
+                                </ui:AssignOperation>
+                              </scg:List>
+                            </ui:MultipleAssign.AssignOperations>
+                          </ui:MultipleAssign>
+                          <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" DisplayName="Move File - Outstanding PDF to Reporting Folder" sap:VirtualizedContainerService.HintSize="434,159" sap2010:WorkflowViewState.IdRef="MoveFile_12" Overwrite="True">
+                            <ui:MoveFile.Destination>
+                              <InArgument x:TypeArguments="x:String">
+                                <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_189">strDestination</CSharpValue>
+                              </InArgument>
+                            </ui:MoveFile.Destination>
+                            <ui:MoveFile.Path>
+                              <InArgument x:TypeArguments="x:String">
+                                <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_190">strPath</CSharpValue>
+                              </InArgument>
+                            </ui:MoveFile.Path>
+                          </ui:MoveFile>
+                          <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="434,132" sap2010:WorkflowViewState.IdRef="MultipleAssign_13">
+                            <ui:MultipleAssign.AssignOperations>
+                              <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_31">
+                                  <ui:AssignOperation.To>
+                                    <OutArgument x:TypeArguments="x:String">
+                                      <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_76">strPath</CSharpReference>
+                                    </OutArgument>
+                                  </ui:AssignOperation.To>
+                                  <ui:AssignOperation.Value>
+                                    <InArgument x:TypeArguments="x:String">
+                                      <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_179">io_DownloadedXLSFile.FullName</CSharpValue>
+                                    </InArgument>
+                                  </ui:AssignOperation.Value>
+                                </ui:AssignOperation>
+                                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_32">
+                                  <ui:AssignOperation.To>
+                                    <OutArgument x:TypeArguments="x:String">
+                                      <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_77">strDestination</CSharpReference>
+                                    </OutArgument>
+                                  </ui:AssignOperation.To>
+                                  <ui:AssignOperation.Value>
+                                    <InArgument x:TypeArguments="x:String">
+                                      <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_186">in_RBCNISReportFolder+io_NewRBCNISOutstandingByDateFileName+io_DownloadedXLSFile.Extension</CSharpValue>
+                                    </InArgument>
+                                  </ui:AssignOperation.Value>
+                                </ui:AssignOperation>
+                              </scg:List>
+                            </ui:MultipleAssign.AssignOperations>
+                          </ui:MultipleAssign>
+                          <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" DisplayName="Move File - Outstanding XLS to Reporting Folder" sap:VirtualizedContainerService.HintSize="434,159" sap2010:WorkflowViewState.IdRef="MoveFile_11" Overwrite="True">
+                            <ui:MoveFile.Destination>
+                              <InArgument x:TypeArguments="x:String">
+                                <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_181">strDestination</CSharpValue>
+                              </InArgument>
+                            </ui:MoveFile.Destination>
+                            <ui:MoveFile.Path>
+                              <InArgument x:TypeArguments="x:String">
+                                <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_182">strPath</CSharpValue>
+                              </InArgument>
+                            </ui:MoveFile.Path>
+                          </ui:MoveFile>
+                        </Sequence>
+                      </uix:NCheckState.IfExists>
+                      <uix:NCheckState.IfNotExists>
+                        <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="400,105" sap2010:WorkflowViewState.IdRef="Sequence_44">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Sequence>
+                      </uix:NCheckState.IfNotExists>
+                      <uix:NCheckState.Target>
+                        <uix:TargetAnchorable BrowserURL="https://nis.rbc.com/nis/reports/Reports/CrystalViewer/ViewReport.aspx" DesignTimeRectangle="76, 148, 65, 17" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'RBC - NI'" FullSelectorArgument="&lt;webctrl src='/nis/reports/Reports/CrystalViewer/ViewReport.aspx' tag='IFRAME' /&gt;&lt;webctrl id='bobjid_1746549523097' tag='TABLE' /&gt;&lt;webctrl tableRow='7' tag='IFRAME' /&gt;&lt;webctrl aaname='RBC - NI' parentid='Text15' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl src='/nis/reports/Reports/CrystalViewer/ViewReport.aspx' tag='IFRAME' /&gt;&lt;webctrl id='bobjid_1746549523097' tag='TABLE' /&gt;&lt;webctrl tag='IFRAME' /&gt;&lt;webctrl aaname='RBC - NI' parentid='Text15' tag='SPAN' type='' class='fced252db2-926f-4f8d-a244-c0619b258aa4-1' check:innerText='RBC - NI' /&gt;" Guid="dddde69d-9c4e-4629-9824-72badacf8a0f" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAEUAAAAVCAYAAAAQAyPeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFlSURBVFhH7ZbRFYMgDEXZhpEYi3Ecx1FSUEMeEBWFtj+8c/JRAyS5xFhDU5UmFEUTiqIJRRFAWcgZQ+bUXFghWr1V1ohZvx4rCy2ufe1jQQ0Os40SX3JxLtYTZvAASjQBcwclWlns4vR1mxWJvRPWYCkP3wmlgqz4EhSlmFQ8+ARinizC7e+Y4mKz3IZDWcnb3ceJX0FJwVJn3Z895hUqoGTxRkNZPdnC19QpsvjYn8+l8ZIarOUOvLiYITMFNmPbq4aBqs75lrBwALR14ReglN1zCyVYeiX+AiX+5LhxjnVC4U1XQ7BtphxDtff1gdc3O7dSWYPMQuPcGChR+BnF55dQIJl9j342a4uhOVivoQRVe8H3Fgo+x81tnSJnSdf95pOMNZT/jwZACYIiOXEs5tSyYNDKmmlwH6vhYtHXBSVIaO83fQvlrEgAzNbfIazzGjDfB1CmWBOKoglF0YSiaEKpRPQBcILn3FJR+gQAAAAASUVORK5CYII=" InformativeScreenshot="65ce7a200e5cd9850a55fa9363374cc4.png" ScopeSelectorArgument="&lt;html app='chrome.exe' htmlwindowname='Reports1746549521460' title='ViewReport' /&gt;" SearchSteps="FuzzySelector, Image" Version="V2" Visibility="Interactive">
+                          <uix:TargetAnchorable.Anchors>
+                            <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                              <uix:Target DesignTimeRectangle="89, 88, 16, 16" ElementType="Icon" FriendlyName="'IMG IconImg_CrystalRepo…'" FullSelectorArgument="&lt;webctrl src='/nis/reports/Reports/CrystalViewer/ViewReport.aspx' tag='IFRAME' /&gt;&lt;webctrl id='CrystalReportViewer_toptoolbar_export' tableRow='1' tag='TABLE' /&gt;&lt;webctrl id='IconImg_CrystalReportViewer_toptoolbar_export' tableRow='1' tag='IMG' /&gt;" FuzzySelectorArgument="&lt;webctrl src='/nis/reports/Reports/CrystalViewer/ViewReport.aspx' tag='IFRAME' /&gt;&lt;webctrl id='CrystalReportViewer_toptoolbar_export' tag='TABLE' /&gt;&lt;webctrl id='IconImg_CrystalReportViewer_toptoolbar_export' type='' tag='IMG' class='' aaname='Export this report' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADaSURBVDhPY9hz4tZ/auJhaqBF2xGs4iBMtoG4DCXKQNWAEgT2L4EbCOKjqyXOQKAhyHxchoEw0S7Ex0fGZBmID5PlZXwYq4FeE8+hYJCB6GIqDccw9IEwhoEgxZceffr/798/OAZ5GZkPwiA1ILXo+lEM1Gw6Dlb4+uvf/x+//oFjdD5MDKQWpAfZDLiBIIlbz778P3rzHUkY5FpkQ1EMBEkmzr1EEr794st/reYTuA0EKQC5FISR2ch8ZHGQK7G6EBTAIJtAksRikHoQRo4clEihBh7sBt76DwBy+BiVRVdgBgAAAABJRU5ErkJggg==" SearchSteps="FuzzySelector, Image" />
+                            </scg:List>
+                          </uix:TargetAnchorable.Anchors>
+                        </uix:TargetAnchorable>
+                      </uix:NCheckState.Target>
+                      <uix:NCheckState.Timeout>
+                        <InArgument x:TypeArguments="x:Double">
+                          <CSharpValue x:TypeArguments="x:Double" sap2010:WorkflowViewState.IdRef="CSharpValue`1_132">in_Delay</CSharpValue>
+                        </InArgument>
+                      </uix:NCheckState.Timeout>
+                    </uix:NCheckState>
+                  </Sequence>
+                </ActivityAction>
+              </uix:NApplicationCard.Body>
+              <uix:NApplicationCard.TargetApp>
+                <uix:TargetApp Area="100, 100, 1216, 670" BrowserType="Edge" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAATPSURBVFhHzZbnU1RnFIf5BP9BJjP5kA/JjDNJJs3RTGKKiTEFEyNGYoiaGI1ABCEQQCB0EEGa9BUQWOkIu7D0tvS20gQRQUCNFNPbkK+/nPPuXvZKKLsLmcmZOXMvy73neW45571W/+tYWFzEVqeh9MbBB/8XYbKEJJDedQdJbdOIbZnE+YYJhNWMIaByBGfLB+FRooNrQS8cc7twPKsdRxRa2Kc04sDFOtjGVmNvVCV2n1NhV2gZdgaWiHpmCyQSvO3+35vOF/wKRT2zBWKaJ0WB+pk/UHP7d1RN/YaKW7+g/ObPuDr2I4qvP0D+8CKUg/PI1t1HRt89pHffQXLnDBLabos7F9U4gWd88kQ9swXO1Y0LAQGfJPgEwcd/QinBiwR8AcqBeVxmeO89pDG8Qw+P4cdG8Ii6G9jmqRT1zBYIrhoVAprJXwWcw+ZYgh4+tIDcgTmCf49LBngSw1un6M7dIvhNhBM8uHoUT7hni3PNFvBTDQkBNcHL6MoZzpknwfsZfhepXbMEn0Y8wS8wvMEI/65yGI+7Zol66wosLM7TAcZcWlqCZ3G/EGB4yegPKBx5oIdfm0MWw3v08MR2IzyS4GG1NxBUdR3+FcPwUQ3isdMZ6wswULo6Kfm3U5lN0N79ywBfxBWC5xjgChk8TjuFaAEfJ/iYEU7t6lmqw6POirUFJLhtfDVSW2dE8r4kYUpGVA8jvHYUoQQPJLgfwb3LB+BB8DNFfXjEMX11AT5ZDq+f/lOkXMKU5Dp+pT0IILCfegjeZUb41/ndpgkwWILKJTZKSaBfp8PM7KyAcLoW9sI5rxtf5XaaLiDflwQ22nIN631esLYLhI1DtKjByfCTuR344nLb2gIckgQXZPBKOP9/ra1TUimcUtVwVlTDNVcLN7pqF0qnvK5l+JEM7foCHJIEQ6XkHubfOaX9lVunVBXO5DTBLb9TDy/ogdOVLpzI6cDnWW347FILPklr2liAQyosJf+9wzUeytYhse+ZqRFblzS12LZotf967vKU4AeTG0wT4ODC8tzungLN6BxCVH3wLWyDd14LPJTNcMtuhPWhENgcjoTN0bjl5y5Pe4LbJdfjw4u1pgtIob8KEvDOFoOIezxIMwR/9QB8ynTwLOmlW95N3wM91GY9OKXsxJfZ7TiW2QoHRQvsUxthl0TwhFq8H1dtmQCP4ud988UoDqUPkUANDxjqcdmA4R5n+HGCHyX4p4pmHCL4AYJ/kFCD92Kr8HZ0pWUCHLyOs0CAZgS+NGC8aMB8w19C9MLp79LaKcF3R6otF+B1nAWM8P7lAbPac5fnHoK/EanCq+FllgvwOs4C35ZdgzvB9T1uHDDc44fTm/BxSgM+SqzDvvgavBujwZ6oCgHfRfCXQkotF+B1nAXcaVl2oQ9Q7vGTK3r8IMH3E5xnxzsEf4vgr/PHaJgevj2w2HIBXsdZ4DS97Y7LA6b1oR7fT21mS2+6HP4KwXcGlxC8CM/5F1guwOs4C+jh7QLuQHB5j3Ob7b2gwZvnGV5O8KsC/mKAHv702TzLBfhEFli1x5fhlQRX47WIcrwcaoQ/a4Bv81ZuXoDhD/d4rbHNZPAdQQa4XwGeYriXEk965mxOYKuSw2yBrQ6TBTj44K1OQ2lDWFn9A7pYDF2d3I9zAAAAAElFTkSuQmCC" InformativeScreenshot="195d51412c791a5011a5a6cc76bbddc8.jpg" Selector="&lt;html app='chrome.exe' htmlwindowname='Reports1696350292607' title='ViewReport' /&gt;" Title="ViewReport" Url="https://nis.rbc.com/nis/reports/Parameter/Outstanding/" />
+              </uix:NApplicationCard.TargetApp>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </uix:NApplicationCard>
+          </Sequence>
+        </ActivityAction>
+      </uix:NApplicationCard.Body>
+      <uix:NApplicationCard.TargetApp>
+        <uix:TargetApp Area="-8, -8, 1696, 1026" BrowserType="Edge" IconBase64="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" InformativeScreenshot="e7a6fcea4ab780fc99475098cbd8bb76.jpg" Selector="&lt;html app='chrome.exe' title='Note Issuance System' /&gt;" Title="Note Issuance System" Url="https://nis.rbc.com/nis/app/#/reports" />
+      </uix:NApplicationCard.TargetApp>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </uix:NApplicationCard>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="496,141" sap2010:WorkflowViewState.IdRef="LogMessage_22" Level="Info">
+      <ui:LogMessage.Message>
+        <InArgument x:TypeArguments="x:Object">
+          <CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_147">"Completed Downloading Outstanding Reports"</CSharpValue>
+        </InArgument>
+      </ui:LogMessage.Message>
+    </ui:LogMessage>
+  </Sequence>
+</Activity>
