@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#" sap:VirtualizedContainerService.HintSize="1537,827" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:si="clr-namespace:System.IO;assembly=System.Private.CoreLib" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System.Net.Mail" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#" sap:VirtualizedContainerService.HintSize="1465,1502" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:si="clr-namespace:System.IO;assembly=System.Private.CoreLib" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System.Net.Mail" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="51">
       <x:String>System.Activities</x:String>
@@ -129,7 +129,7 @@
       <AssemblyReference>System.Data.SqlClient</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main" sap:VirtualizedContainerService.HintSize="400,648" sap2010:WorkflowViewState.IdRef="Sequence_130">
+  <Sequence DisplayName="Main Process Workflow" sap:VirtualizedContainerService.HintSize="540,1437" sap2010:WorkflowViewState.IdRef="Sequence_130">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="strTriggerEmailSubject" />
       <Variable x:TypeArguments="x:String" Name="strSystemEmail" />
@@ -141,8 +141,8 @@
       <Variable x:TypeArguments="x:Double" Name="dblIssuedRedemption" />
       <Variable x:TypeArguments="x:Double" Name="dblMaturingRedemption" />
       <Variable x:TypeArguments="x:String" Default="C:\Users\FinancialSystems\OneDrive - Alectra\Daily Commercial Paper Reports\" Name="strRBCNISReportFolder" />
-      <Variable x:TypeArguments="x:String" Default="Trades Issued  Today -  07 Jul 2025" Name="strNewRBCNISIssuedFileName" />
-      <Variable x:TypeArguments="x:String" Default="Trades Maturing  Today -  07 Jul 2025" Name="strNewRBCNISMaturingFileName" />
+      <Variable x:TypeArguments="x:String" Default="Trades Issued  Today -  07 Jul 2025" Name="strNewRBCNISIssuedName" />
+      <Variable x:TypeArguments="x:String" Default="Trades Maturing  Today -  07 Jul 2025" Name="strNewRBCNISMaturingName" />
       <Variable x:TypeArguments="x:String" Name="strIssuedIssueDate" />
       <Variable x:TypeArguments="x:String" Name="strIssuedMaturityDate" />
       <Variable x:TypeArguments="x:String" Name="strMaturingIssueDate" />
@@ -150,25 +150,13 @@
       <Variable x:TypeArguments="x:String" Name="strMaturingTransaction" />
       <Variable x:TypeArguments="x:String" Name="strMaturingBank" />
       <Variable x:TypeArguments="x:String" Name="strIssuedInterest" />
-      <Variable x:TypeArguments="x:String" Default="RBCNISReportDownloadStatus" Name="strQueueNameTrx" />
       <Variable x:TypeArguments="x:Double" Default="30" Name="dblDelay" />
-      <Variable x:TypeArguments="x:String" Name="strPathRBCNISFolderAndFile" />
-      <Variable x:TypeArguments="x:String" Name="strOldRBCNISName" />
       <Variable x:TypeArguments="si:FileInfo" Name="fiDownloadedXLSFile" />
       <Variable x:TypeArguments="si:FileInfo" Name="fiDownloadedPDFFile" />
       <Variable x:TypeArguments="x:String" Name="strRptFail" />
-      <Variable x:TypeArguments="x:String" Name="strNewRBCNISMaturingName" />
-      <Variable x:TypeArguments="x:String" Name="strNewRBCNISOutstandingByDateFileName" />
-      <Variable x:TypeArguments="x:String" Name="strNewRBCNISOutstandingByDateName" />
-      <Variable x:TypeArguments="x:String" Name="strNewRBCNISIssuedName" />
-      <Variable x:TypeArguments="x:String" Name="strRBCNISNewReportFullFilePath" />
+      <Variable x:TypeArguments="x:String" Name="strNewRBCNISOutstandingName" />
       <Variable x:TypeArguments="x:String" Name="strSubject" />
-      <Variable x:TypeArguments="x:Boolean" Name="bolSubject">
-        <Variable.Default>
-          <Literal x:TypeArguments="x:Boolean" Value="True" />
-        </Variable.Default>
-      </Variable>
-      <Variable x:TypeArguments="x:String" Default="RBCExpressConfirmation" Name="strQueueNameNoTrx" />
+      <Variable x:TypeArguments="x:Boolean" Default="True" Name="bolSubject" />
       <Variable x:TypeArguments="x:Boolean" Name="bolEmailReceived" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
@@ -176,7 +164,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Process Trigger and RBC NIS Login.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="338,52" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Workflows\\Process Trigger and RBC NIS Login.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Process Trigger and RBC NIS Login" sap:VirtualizedContainerService.HintSize="478,52" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Workflows\\Process Trigger and RBC NIS Login.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InOutArgument x:TypeArguments="x:Boolean" x:Key="io_EmailReceived">
           <CSharpReference x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpReference`1_143">bolEmailReceived</CSharpReference>
@@ -207,7 +195,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:InvokeWorkflowFile>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="RBC NIS Report Trigger.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="338,52" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Workflows\\RBC NIS Report Trigger.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="RBC NIS Report Download Trigger" sap:VirtualizedContainerService.HintSize="478,52" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Workflows\\RBC NIS Report Download Trigger.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="x:Double" x:Key="in_Delay">
           <CSharpValue x:TypeArguments="x:Double" sap2010:WorkflowViewState.IdRef="CSharpValue`1_269">dblDelay</CSharpValue>
@@ -219,19 +207,19 @@
           <CSharpReference x:TypeArguments="si:FileInfo" sap2010:WorkflowViewState.IdRef="CSharpReference`1_114">fiDownloadedXLSFile</CSharpReference>
         </OutArgument>
         <OutArgument x:TypeArguments="x:String" x:Key="out_NewRBCNISIssuedFileName">
-          <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_113">strNewRBCNISIssuedFileName</CSharpReference>
+          <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_113">strNewRBCNISIssuedName</CSharpReference>
         </OutArgument>
         <OutArgument x:TypeArguments="si:FileInfo" x:Key="out_DownloadedPDFFile">
           <CSharpReference x:TypeArguments="si:FileInfo" sap2010:WorkflowViewState.IdRef="CSharpReference`1_112">fiDownloadedPDFFile</CSharpReference>
         </OutArgument>
         <OutArgument x:TypeArguments="x:String" x:Key="out_NewRBCNISMaturingFileName">
-          <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_111">strNewRBCNISMaturingFileName</CSharpReference>
+          <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_111">strNewRBCNISMaturingName</CSharpReference>
         </OutArgument>
         <OutArgument x:TypeArguments="x:String" x:Key="out_RptFail">
           <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_110">strRptFail</CSharpReference>
         </OutArgument>
         <OutArgument x:TypeArguments="x:String" x:Key="out_NewRBCNISOutstandingByDateFileName">
-          <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_109">strNewRBCNISOutstandingByDateFileName</CSharpReference>
+          <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_109">strNewRBCNISOutstandingName</CSharpReference>
         </OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
       <sap:WorkflowViewStateService.ViewState>
@@ -241,7 +229,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:InvokeWorkflowFile>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Email Confirm and Store Values in DB.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="338,52" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Workflows\\Email Confirm and Store Values in DB.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Email Confirm and Store Values in DB" sap:VirtualizedContainerService.HintSize="478,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Workflows\\Email Confirm and Store Values in DB.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <OutArgument x:TypeArguments="x:String" x:Key="out_RBCDateLookup">
           <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_101">strRBCDateLookup</CSharpReference>
@@ -250,10 +238,10 @@
           <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_264">strRBCNISReportFolder</CSharpValue>
         </InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_NewRBCNISIssuedFileName">
-          <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_265">strNewRBCNISIssuedFileName</CSharpValue>
+          <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_265">strNewRBCNISIssuedName</CSharpValue>
         </InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_NewRBCNISMaturingFileName">
-          <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_266">strNewRBCNISMaturingFileName</CSharpValue>
+          <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_266">strNewRBCNISMaturingName</CSharpValue>
         </InArgument>
         <InOutArgument x:TypeArguments="x:String" x:Key="io_MaturingBank">
           <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_102">strMaturingBank</CSharpReference>
@@ -279,12 +267,12 @@
       </ui:InvokeWorkflowFile.Arguments>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:InvokeWorkflowFile>
-    <If sap2010:Annotation.AnnotationText="If the email from the Treasury team email indicates there is no RBC Express Trx, proceed immediately to final process step. Otherwise, create the RBC Express trx and notify the approver and Treasury team." DisplayName="If RBC Express Trx" sap:VirtualizedContainerService.HintSize="338,169" sap2010:WorkflowViewState.IdRef="If_4">
+    <If sap2010:Annotation.AnnotationText="If the email from the Treasury team email indicates there is no RBC Express Trx, proceed immediately to final process step. Otherwise, create the RBC Express trx and notify the approver and Treasury team." DisplayName="If RBC Express Trx" sap:VirtualizedContainerService.HintSize="478,897" sap2010:WorkflowViewState.IdRef="If_4">
       <If.Condition>
         <InArgument x:TypeArguments="x:Boolean">
           <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_214">bolSubject</CSharpValue>
@@ -292,24 +280,19 @@
       </If.Condition>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <Sequence DisplayName="Sequence for Internal Trx" sap:VirtualizedContainerService.HintSize="400,462" sap2010:WorkflowViewState.IdRef="Sequence_95">
+        <Sequence DisplayName="Sequence for Internal Trx" sap:VirtualizedContainerService.HintSize="400,332" sap2010:WorkflowViewState.IdRef="Sequence_95">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="338,90" sap2010:WorkflowViewState.IdRef="WriteLine_1">
-            <InArgument x:TypeArguments="x:String">
-              <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_247">strQueueNameTrx</CSharpValue>
-            </InArgument>
-          </WriteLine>
-          <ui:AddQueueItem ServiceBaseAddress="{x:Null}" DisplayName="Add Queue Item" FolderPath="Commercial Paper" sap:VirtualizedContainerService.HintSize="338,221" sap2010:WorkflowViewState.IdRef="AddQueueItem_7" Priority="Normal" QueueType="RBCNISReportDownloadStatus">
+          <ui:AddQueueItem ServiceBaseAddress="{x:Null}" DisplayName="Add Queue Item for Internal Trx" FolderPath="Commercial Paper" sap:VirtualizedContainerService.HintSize="338,221" sap2010:WorkflowViewState.IdRef="AddQueueItem_7" Priority="Normal" QueueType="RBCNISReportDownloadStatus">
             <ui:AddQueueItem.ItemInformation>
               <InArgument x:TypeArguments="x:String" x:Key="RBCDateLookup">
                 <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_215">strRBCDateLookup</CSharpValue>
@@ -330,10 +313,10 @@
                 <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_220">strRBCNISReportFolder</CSharpValue>
               </InArgument>
               <InArgument x:TypeArguments="x:String" x:Key="NewRBCNISIssuedFileName">
-                <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_221">strNewRBCNISIssuedFileName+".pdf"</CSharpValue>
+                <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_221">strNewRBCNISIssuedName+".pdf"</CSharpValue>
               </InArgument>
               <InArgument x:TypeArguments="x:String" x:Key="NewRBCNISMaturingFileName">
-                <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_222">strNewRBCNISMaturingFileName+".pdf"</CSharpValue>
+                <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_222">strNewRBCNISMaturingName+".pdf"</CSharpValue>
               </InArgument>
               <InArgument x:TypeArguments="x:String" x:Key="IssuedIssueDate">
                 <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_223">strIssuedIssueDate</CSharpValue>
@@ -372,18 +355,13 @@
         </Sequence>
       </If.Then>
       <If.Else>
-        <Sequence DisplayName="Sequence for No Internal Trx" sap:VirtualizedContainerService.HintSize="400,462" sap2010:WorkflowViewState.IdRef="Sequence_96">
+        <Sequence DisplayName="Sequence for No Internal Trx" sap:VirtualizedContainerService.HintSize="400,332" sap2010:WorkflowViewState.IdRef="Sequence_96">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="338,90" sap2010:WorkflowViewState.IdRef="WriteLine_2">
-            <InArgument x:TypeArguments="x:String">
-              <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_248">strQueueNameNoTrx</CSharpValue>
-            </InArgument>
-          </WriteLine>
-          <ui:AddQueueItem ServiceBaseAddress="{x:Null}" DisplayName="Add Queue Item" FolderPath="Commercial Paper" sap:VirtualizedContainerService.HintSize="338,221" sap2010:WorkflowViewState.IdRef="AddQueueItem_8" Priority="Normal" QueueType="RBCExpressConfirmation">
+          <ui:AddQueueItem ServiceBaseAddress="{x:Null}" DisplayName="Add Queue Item for No Internal Trx" FolderPath="Commercial Paper" sap:VirtualizedContainerService.HintSize="338,221" sap2010:WorkflowViewState.IdRef="AddQueueItem_8" Priority="Normal" QueueType="RBCExpressConfirmation">
             <ui:AddQueueItem.ItemInformation>
               <InArgument x:TypeArguments="x:String" x:Key="RBCDateLookup">
                 <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_249">strRBCDateLookup</CSharpValue>
@@ -422,7 +400,7 @@
         </Sequence>
       </If.Else>
     </If>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="338,52" sap2010:WorkflowViewState.IdRef="LogMessage_27">
+    <ui:LogMessage DisplayName="Process Complete" sap:VirtualizedContainerService.HintSize="478,52" sap2010:WorkflowViewState.IdRef="LogMessage_27">
       <ui:LogMessage.Level>
         <InArgument x:TypeArguments="ui:LogLevel">
           <CSharpValue x:TypeArguments="ui:LogLevel" sap2010:WorkflowViewState.IdRef="CSharpValue`1_267">UiPath.Core.Activities.LogLevel.Info</CSharpValue>
