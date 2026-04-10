@@ -1,0 +1,282 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="GlobalHandler" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uico="http://schemas.uipath.com/workflow/activities/contracts" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_errorInfo" Type="InArgument(uico:ExceptionHandlerArgs)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
+    <x:Property Name="out_result" Type="OutArgument(uico:ErrorAction)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
+  <sap:VirtualizedContainerService.HintSize>1465,1807</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>GlobalHandler_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="35">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>UiPath.Activities.Contracts</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Mail</x:String>
+      <x:String>UiPath.Mail.Outlook.Activities</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>System.Reflection</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="49">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.CSharp</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.Activities.Contracts</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.PDF.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:Annotation.AnnotationText="This sequence steps in during execution when the project encounters an unmanaged error.&#xA;&#xA;Important: Arguments 'errorInfo' and 'result' should not be removed." DisplayName="Global Exception Handler" sap:VirtualizedContainerService.HintSize="540,1742" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Error" sap:VirtualizedContainerService.HintSize="478,141" sap2010:WorkflowViewState.IdRef="LogMessage_1">
+      <ui:LogMessage.Level>
+        <InArgument x:TypeArguments="ui:LogLevel">
+          <CSharpValue x:TypeArguments="ui:LogLevel" sap2010:WorkflowViewState.IdRef="CSharpValue`1_8">LogLevel.Error</CSharpValue>
+        </InArgument>
+      </ui:LogMessage.Level>
+      <ui:LogMessage.Message>
+        <InArgument x:TypeArguments="x:Object">
+          <CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1">in_errorInfo.Exception.ToString()</CSharpValue>
+        </InArgument>
+      </ui:LogMessage.Message>
+    </ui:LogMessage>
+    <If sap2010:Annotation.AnnotationText="Choose the action to be taken after the Global Exception Handler steps in: &#xA;&#xA;Continue - The exception is re-thrown.&#xA;&#xA;Ignore - The exception is ignored, and the execution continues from the next activity.&#xA;&#xA;Retry - The activity which threw the exception is retried.&#xA;&#xA;Abort - The execution stops after running the current handler." DisplayName="Choose Next Behaviour" sap:VirtualizedContainerService.HintSize="478,1393" sap2010:WorkflowViewState.IdRef="If_1">
+      <If.Condition>
+        <InArgument x:TypeArguments="x:Boolean">
+          <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_9">in_errorInfo.RetryCount &lt; 1</CSharpValue>
+        </InArgument>
+      </If.Condition>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <Assign DisplayName="Assign thing to Result" sap:VirtualizedContainerService.HintSize="262,61" sap2010:WorkflowViewState.IdRef="Assign_5">
+          <Assign.To>
+            <OutArgument x:TypeArguments="uico:ErrorAction">
+              <CSharpReference x:TypeArguments="uico:ErrorAction" sap2010:WorkflowViewState.IdRef="CSharpReference`1_1">out_result</CSharpReference>
+            </OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="uico:ErrorAction">
+              <CSharpValue x:TypeArguments="uico:ErrorAction" sap2010:WorkflowViewState.IdRef="CSharpValue`1_3">ErrorAction.Retry</CSharpValue>
+            </InArgument>
+          </Assign.Value>
+        </Assign>
+      </If.Then>
+      <If.Else>
+        <Sequence DisplayName="Activities to Log Out and Close Browser and Send Email" sap:VirtualizedContainerService.HintSize="400,955" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="x:String" Name="strEmailAdmin" />
+            <Variable x:TypeArguments="x:String" Default="financialsystems@alectrautilities.com" Name="strSystemEmail" />
+          </Sequence.Variables>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <uix:NApplicationCard sap2010:Annotation.AnnotationText="Use the Browser to Access RBC NIS Reports and Download to SharePoint" AttachMode="ByInstance" CloseMode="Always" ContinueOnError="True" DisplayName="Download RBC NIS Reports" sap:VirtualizedContainerService.HintSize="338,109" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OpenMode="IfNotOpen" ScopeGuid="9948d0dd-e31f-47e8-a7d9-b201863ab0d4" Version="V2" WindowResize="Maximize">
+            <uix:NApplicationCard.Body>
+              <ActivityAction x:TypeArguments="x:Object">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="462,677" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Sequence DisplayName="Log Out of RBC NIS and Close the Browser" sap:VirtualizedContainerService.HintSize="400,465" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Financial Systems'" sap:VirtualizedContainerService.HintSize="338,157" sap2010:WorkflowViewState.IdRef="NClick_1" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="9948d0dd-e31f-47e8-a7d9-b201863ab0d4" Version="V3">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable BrowserURL="https://nis.rbc.com/nis/app/#/reports" DesignTimeRectangle="1367, 219, 11, 14" DesignTimeScaleFactor="1" FriendlyName="'I'" FullSelectorArgument="&lt;webctrl idx='2' parentid='clientUser' tag='I' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' parentid='clientUser' tag='I' class='fa fa-lg fa-caret-down' aaname='' /&gt;" Guid="11aac55d-d2dd-46d5-bd2c-daeb8a9e82c0" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAA8AAAASCAYAAACEnoQPAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACTSURBVDhPncyxCYNAAIVhN3Ecd3GG7GHlBBYO4QApLEQE04RcCouIiOXzThSMvsOHB59wP74LgrjAbTSqaFTRqKJRtXweDZJ6QGXGCz3yvDyM0w4vaGdq34exFWY/mPUH35nMF9E23I+vHjgNnb+LxR6gQ+cUrP0D3qFDoxVmHZ71xz90aFTRqKJRRaOKRhWNkgIziOCeSncEt5sAAAAASUVORK5CYII=" InformativeScreenshot="2e1c2b0e8d4a532866d5994821c4d7b5.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Note Issuance System' /&gt;" SearchSteps="FuzzySelector, Image" Version="V2" Visibility="Interactive">
+                          <uix:TargetAnchorable.Anchors>
+                            <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                              <uix:Target DesignTimeRectangle="1224, 214, 154, 21" ElementType="Text" FriendlyName="'Financial Systems'" FullSelectorArgument="&lt;webctrl parentid='clientUser' tag='A' /&gt;" FuzzySelectorArgument="&lt;webctrl parentid='clientUser' tag='A' type='' class='' aaname='  Financial Systems  ' check:innerText='Financial Systems' /&gt;" ImageBase64="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" SearchSteps="FuzzySelector, Image" />
+                            </scg:List>
+                          </uix:TargetAnchorable.Anchors>
+                        </uix:TargetAnchorable>
+                      </uix:NClick.Target>
+                    </uix:NClick>
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Log out'" sap:VirtualizedContainerService.HintSize="338,157" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="9948d0dd-e31f-47e8-a7d9-b201863ab0d4" Version="V3">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable BrowserURL="https://nis.rbc.com/nis/app/#/reports" DesignTimeRectangle="1313, 322, 198, 21" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'Log out'" FullSelectorArgument="&lt;webctrl parentid='logout' tag='A' /&gt;" FuzzySelectorArgument="&lt;webctrl parentid='logout' tag='A' type='' class='' aaname='Log out' check:innerText='Log out' /&gt;" Guid="141df095-df4f-4f6f-a25e-5adb72aa6ba1" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAMoAAAAaCAYAAAD2W8OHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKKSURBVHhe7dmvaxthHAbw+xuiphZTNbOpqsFERZiqKhETkYFBqJgohUHUqgIHm2jMMgZlhVS0qiPQEEhFRETVCDGNiIgphIojEPPsvfd+9H137/3o0jZHecQH7v3mfd9UfJ++dxfL+ngJIkphLBKRzlgkIp2xSEQ6Y5GIdMYiEemMRaJ7a2IEC/PxmeGzZ8BYJLq35xCUM/QcC5g1o59FCkT/hUEhyiBbUKrDGubLF4CYC2xiMj5C6Z85pW4dk3DOFkbDBq7E9Wigz1MVf4nvd175a15iflOH/e3u893xW1Gv4oeyxjqpYx7s61976z3a94UXRCtJD0rlz7ZowC0MuucoivG7jtucBbGmLcdy3s8GZmKfxewrKl9EAOw2ft96AYgNilwj9rk+Qvmzt6bnFACnjl0xduekBkXWeKLQo0sLSkueCpi27kIh7F1vigb+gGPbPJYiDa2zpxtiTQ2Hfiik030sRHgmwws5ZlAoJ1KCEtfsHbehN3DVdcfn4vQQjXrbQFmdkxiUuOZuY7D0gumOGRTKiZSgyP/whmbXmjWmUROD4gci0tz6XgwK5cQqJ0pBD8pNU7s9Sw5KXHMHAeKJQrnyMM8oxueNxKBke0YpyxcJOzhNfPZhUOjRpQUl41uvkwOvpr7BeoC3XuEc8V2vxTico+0bPCMdoOruowYvvCBaiReU4DcIjduw/rxMv6P09zEL5jg1HPeTTxRX2u8orlL/kwyhnLPcQa/bkH+zum9RBNUNFPAGg46yPrwgyivtOWZNjEWiNap0WtjzT4PwFmlZg63eCj01Y5FobS5wOH2PRXh75t9GfTfNfULGIhHpjEUi0gUX3jFHRKpIUIgogbFIRIpL/AV8bhCyf49GgQAAAABJRU5ErkJggg==" InformativeScreenshot="52d4a2fc17b5dad0cf68b9a46a7bcd24.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Note Issuance System' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive">
+                          <uix:TargetAnchorable.Anchors>
+                            <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                              <uix:Target DesignTimeRectangle="1224, 214, 154, 22" ElementType="Text" FriendlyName="'Financial Systems'" FullSelectorArgument="&lt;webctrl parentid='clientUser' tag='A' /&gt;" FuzzySelectorArgument="&lt;webctrl parentid='clientUser' tag='A' type='' class='' aaname='  Financial Systems  ' check:innerText='Financial Systems' /&gt;" ImageBase64="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" SearchSteps="FuzzySelector, Image" />
+                            </scg:List>
+                          </uix:TargetAnchorable.Anchors>
+                        </uix:TargetAnchorable>
+                      </uix:NClick.Target>
+                    </uix:NClick>
+                  </Sequence>
+                  <Assign DisplayName="Assign thing to out_result" sap:VirtualizedContainerService.HintSize="400,61" sap2010:WorkflowViewState.IdRef="Assign_7">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="uico:ErrorAction">
+                        <CSharpReference x:TypeArguments="uico:ErrorAction" sap2010:WorkflowViewState.IdRef="CSharpReference`1_3">out_result</CSharpReference>
+                      </OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="uico:ErrorAction">
+                        <CSharpValue x:TypeArguments="uico:ErrorAction" sap2010:WorkflowViewState.IdRef="CSharpValue`1_10">ErrorAction.Abort</CSharpValue>
+                      </InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+              </ActivityAction>
+            </uix:NApplicationCard.Body>
+            <uix:NApplicationCard.TargetApp>
+              <uix:TargetApp Area="-8, -8, 1696, 1026" BrowserType="Edge" IconBase64="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" InformativeScreenshot="e7a6fcea4ab780fc99475098cbd8bb76.jpg" Selector="&lt;html app='chrome.exe' title='Note Issuance System' /&gt;" Title="Note Issuance System" Url="https://nis.rbc.com/nis/app/#/reports" />
+            </uix:NApplicationCard.TargetApp>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </uix:NApplicationCard>
+          <ui:GetRobotAsset AssetName="Admin Distribution List" CacheStrategy="None" DisplayName="Get Admin Emails to Send Notification" FolderPath="Commercial Paper" sap:VirtualizedContainerService.HintSize="338,366" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2">
+            <ui:GetRobotAsset.TimeoutMS>
+              <InArgument x:TypeArguments="x:Int32" />
+            </ui:GetRobotAsset.TimeoutMS>
+            <ui:GetRobotAsset.Value>
+              <OutArgument x:TypeArguments="x:String">
+                <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_4">strEmailAdmin</CSharpReference>
+              </OutArgument>
+            </ui:GetRobotAsset.Value>
+          </ui:GetRobotAsset>
+          <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="Send an email to the Treasury team to let them know that the RBC NIS password needs to be reset." Body="There was an issue downloading the RBC NIS Reports. Try the first troubleshooting step (restarting the process in Orchestrator). If that fails, try the second troubleshooting step (run the process manually from the server). If that fails, default to the fully manual steps." DisplayName="Notify Password Reset" sap:VirtualizedContainerService.HintSize="338,188" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" Importance="High" IsBodyHtml="False" IsDraft="False" Sensitivity="Normal" Subject="Issue Downloading RBC NIS Reports">
+            <ui:SendOutlookMail.Files>
+              <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+            </ui:SendOutlookMail.Files>
+            <ui:SendOutlookMail.SentOnBehalfOfName>
+              <InArgument x:TypeArguments="x:String">
+                <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_13">strSystemEmail</CSharpValue>
+              </InArgument>
+            </ui:SendOutlookMail.SentOnBehalfOfName>
+            <ui:SendOutlookMail.To>
+              <InArgument x:TypeArguments="x:String">
+                <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_11">strEmailAdmin</CSharpValue>
+              </InArgument>
+            </ui:SendOutlookMail.To>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:SendOutlookMail>
+          <Assign DisplayName="Assign thing to result" sap:VirtualizedContainerService.HintSize="338,61" sap2010:WorkflowViewState.IdRef="Assign_8">
+            <Assign.To>
+              <OutArgument x:TypeArguments="uico:ErrorAction">
+                <CSharpReference x:TypeArguments="uico:ErrorAction" sap2010:WorkflowViewState.IdRef="CSharpReference`1_5">out_result</CSharpReference>
+              </OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="uico:ErrorAction">
+                <CSharpValue x:TypeArguments="uico:ErrorAction" sap2010:WorkflowViewState.IdRef="CSharpValue`1_12">ErrorAction.Abort</CSharpValue>
+              </InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+      </If.Else>
+    </If>
+  </Sequence>
+</Activity>

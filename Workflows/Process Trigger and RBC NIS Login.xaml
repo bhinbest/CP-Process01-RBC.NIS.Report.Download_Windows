@@ -1,0 +1,715 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Email_Trigger_and_Login" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:r="clr-namespace:RBC_NIS_Login_Windows;assembly=RBC NIS Login_Windows" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System.Net.Mail" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:um="clr-namespace:UiPath.Mail;assembly=UiPath.Mail.Activities" xmlns:umab="clr-namespace:UiPath.Mail.Activities.Business;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="io_EmailReceived" Type="InOutArgument(x:Boolean)" />
+    <x:Property Name="io_RBCExpressPasswordStatus" Type="InOutArgument(x:Boolean)" />
+    <x:Property Name="io_TriggerEmailSubject" Type="InOutArgument(x:String)" />
+    <x:Property Name="in_SystemEmail" Type="InArgument(x:String)" />
+    <x:Property Name="io_Emails" Type="InOutArgument(scg:List(snm:MailMessage))" />
+    <x:Property Name="io_Subject" Type="InOutArgument(x:String)" />
+    <x:Property Name="out_Subject" Type="OutArgument(x:Boolean)" />
+  </x:Members>
+  <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
+  <sap:VirtualizedContainerService.HintSize>1149,797</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="70">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>UiPath.Mail.Outlook.Activities</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Mail.Activities.Business.ForEachMail</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.Mail.Activities.Business</x:String>
+      <x:String>UiPath.Shared.Activities.Business</x:String>
+      <x:String>UiPath.Mail</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>RBC_NIS_Login_Windows</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="128">
+      <AssemblyReference>Microsoft.CSharp</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.PDF.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.Watcher</AssemblyReference>
+      <AssemblyReference>System.IO.Packaging</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.AccessControl</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
+      <AssemblyReference>RBC NIS Login_Windows</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>System.Windows.Forms.Design</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices.RuntimeInformation</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <StateMachine InitialState="{x:Reference __ReferenceID0}" DisplayName="Process Trigger and RBC NIS Login" sap:VirtualizedContainerService.HintSize="880,693" sap2010:WorkflowViewState.IdRef="StateMachine_3">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <av:Point x:Key="ShapeLocation">400,2.5</av:Point>
+        <x:Double x:Key="StateContainerWidth">846</x:Double>
+        <x:Double x:Key="StateContainerHeight">656.04</x:Double>
+        <av:PointCollection x:Key="ConnectorLocation">430,77.5 430,98</av:PointCollection>
+        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <State x:Name="__ReferenceID0" sap2010:Annotation.AnnotationText="Check Outlook for the trigger Email. If received, proceed to the next step, otherwise, continue rechecking for the email." DisplayName="Trigger Email" sap:VirtualizedContainerService.HintSize="446,1159" sap2010:WorkflowViewState.IdRef="State_2">
+      <State.Entry>
+        <Sequence DisplayName="Trigger Email Entry" sap:VirtualizedContainerService.HintSize="400,729" sap2010:WorkflowViewState.IdRef="Sequence_112">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:GetRobotAsset AssetName="RBC NIS Subject" CacheStrategy="None" DisplayName="Get Email Subject to Lookup" FolderPath="Commercial Paper" sap:VirtualizedContainerService.HintSize="338,170" sap2010:WorkflowViewState.IdRef="GetRobotAsset_14">
+            <ui:GetRobotAsset.TimeoutMS>
+              <InArgument x:TypeArguments="x:Int32" />
+            </ui:GetRobotAsset.TimeoutMS>
+            <ui:GetRobotAsset.Value>
+              <OutArgument x:TypeArguments="x:String">
+                <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_130">io_TriggerEmailSubject</CSharpReference>
+              </OutArgument>
+            </ui:GetRobotAsset.Value>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:GetRobotAsset>
+          <ui:GetRobotAsset AssetName="Treasury Distribution List" CacheStrategy="None" DisplayName="Get the Treasury Email Distribution List" FolderPath="Commercial Paper" sap:VirtualizedContainerService.HintSize="338,170" sap2010:WorkflowViewState.IdRef="GetRobotAsset_19">
+            <ui:GetRobotAsset.TimeoutMS>
+              <InArgument x:TypeArguments="x:Int32" />
+            </ui:GetRobotAsset.TimeoutMS>
+            <ui:GetRobotAsset.Value>
+              <OutArgument x:TypeArguments="x:String">
+                <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_138">strEmailTreasury</CSharpReference>
+              </OutArgument>
+            </ui:GetRobotAsset.Value>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:GetRobotAsset>
+          <ui:GetOutlookMailMessages FilterByMessageIds="{x:Null}" TimeoutMS="{x:Null}" sap2010:Annotation.AnnotationText="Look in the Financial Systems Inbox, filter on emails with subject 'RBC NIS trade approved'." DisplayName="Get Financial Systems Emails" GetAttachements="False" sap:VirtualizedContainerService.HintSize="338,97" sap2010:WorkflowViewState.IdRef="GetOutlookMailMessages_2" MailFolder="Inbox" MarkAsRead="True" OnlyUnreadMessages="False" OrderByDate="NewestFirst" Top="30">
+            <ui:GetOutlookMailMessages.Account>
+              <InArgument x:TypeArguments="x:String">
+                <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_270">in_SystemEmail</CSharpValue>
+              </InArgument>
+            </ui:GetOutlookMailMessages.Account>
+            <ui:GetOutlookMailMessages.Filter>
+              <InArgument x:TypeArguments="x:String">
+                <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_271">"@SQL=\"urn:schemas:httpmail:subject\" LIKE '%" + io_TriggerEmailSubject + "%'"</CSharpValue>
+              </InArgument>
+            </ui:GetOutlookMailMessages.Filter>
+            <ui:GetOutlookMailMessages.Messages>
+              <OutArgument x:TypeArguments="scg:List(snm:MailMessage)">
+                <CSharpReference x:TypeArguments="scg:List(snm:MailMessage)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_119">io_Emails</CSharpReference>
+              </OutArgument>
+            </ui:GetOutlookMailMessages.Messages>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:GetOutlookMailMessages>
+          <Assign DisplayName="Assign Email Received Status" sap:VirtualizedContainerService.HintSize="338,61" sap2010:WorkflowViewState.IdRef="Assign_24">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:Boolean">
+                <CSharpReference x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpReference`1_131">io_EmailReceived</CSharpReference>
+              </OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:Boolean">
+                <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_272">io_Emails.Any(s =&gt; s.Subject.Contains("RBC NIS trade approved"))</CSharpValue>
+              </InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+      </State.Entry>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <av:Point x:Key="ShapeLocation">252.5,98</av:Point>
+          <av:Size x:Key="ShapeSize">355,104</av:Size>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          <x:Double x:Key="StateContainerWidth">321</x:Double>
+          <x:Double x:Key="StateContainerHeight">25</x:Double>
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <State.Transitions>
+        <Transition DisplayName="Received" sap:VirtualizedContainerService.HintSize="450,508" sap2010:WorkflowViewState.IdRef="Transition_11">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <av:PointCollection x:Key="ConnectorLocation">430,202 430,237.99999999999997</av:PointCollection>
+              <x:Int32 x:Key="SrcConnectionPointIndex">39</x:Int32>
+              <x:Int32 x:Key="DestConnectionPointIndex">38</x:Int32>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Transition.To>
+            <State x:Name="__ReferenceID1" sap2010:Annotation.AnnotationText="After the login attempt, check to see if there is a message that the password has expired. If so notiry Treasury to update the password and send it to the UiPath admin, to update the credentials and retrigger the process, otherwise, continue to the next step." DisplayName="Password Status" sap:VirtualizedContainerService.HintSize="737,104" sap2010:WorkflowViewState.IdRef="State_4">
+              <State.Entry>
+                <Sequence DisplayName="Password Status Entry" sap:VirtualizedContainerService.HintSize="916,1528" sap2010:WorkflowViewState.IdRef="Sequence_121">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <umab:OutlookApplicationCard Account="financialsystems@alectrautilities.com" AccountMismatchBehavior="UseDefaultEmailAccount" DisplayName="Use Outlook to Find the Trigger Email" sap:VirtualizedContainerService.HintSize="854,983" sap2010:WorkflowViewState.IdRef="OutlookApplicationCard_3">
+                    <umab:OutlookApplicationCard.Body>
+                      <ActivityAction x:TypeArguments="um:IMailQuickHandle">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="um:IMailQuickHandle" Name="Outlook" />
+                        </ActivityAction.Argument>
+                        <umab:ForEachEmailX MailFilter="{x:Null}" DisplayName="Check Each Email for the Trigger Email" sap:VirtualizedContainerService.HintSize="519,803" sap2010:WorkflowViewState.IdRef="ForEachEmailX_3" IncludeSubfolders="False" NumberOfEmailsLimit="100" RetrieveAttachments="False" UnreadOnly="False" WithAttachmentsOnly="False">
+                          <umab:ForEachEmailX.Body>
+                            <ActivityAction x:TypeArguments="snm:MailMessage, x:Int32">
+                              <ActivityAction.Argument1>
+                                <DelegateInArgument x:TypeArguments="snm:MailMessage" Name="CurrentMail" />
+                              </ActivityAction.Argument1>
+                              <ActivityAction.Argument2>
+                                <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
+                              </ActivityAction.Argument2>
+                              <Sequence DisplayName="Do Activities to the Trigger Email" sap:VirtualizedContainerService.HintSize="485,552" sap2010:WorkflowViewState.IdRef="Sequence_117">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:MultipleAssign DisplayName="Multiple Assign Email Subject and Subject Status" sap:VirtualizedContainerService.HintSize="423,132" sap2010:WorkflowViewState.IdRef="MultipleAssign_16">
+                                  <ui:MultipleAssign.AssignOperations>
+                                    <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+                                      <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_37">
+                                        <ui:AssignOperation.To>
+                                          <OutArgument x:TypeArguments="x:String">
+                                            <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_132">io_Subject</CSharpReference>
+                                          </OutArgument>
+                                        </ui:AssignOperation.To>
+                                        <ui:AssignOperation.Value>
+                                          <InArgument x:TypeArguments="x:String">
+                                            <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_275">CurrentMail.Subject;</CSharpValue>
+                                          </InArgument>
+                                        </ui:AssignOperation.Value>
+                                      </ui:AssignOperation>
+                                      <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_38">
+                                        <ui:AssignOperation.To>
+                                          <OutArgument x:TypeArguments="x:Boolean">
+                                            <CSharpReference x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpReference`1_133">out_Subject</CSharpReference>
+                                          </OutArgument>
+                                        </ui:AssignOperation.To>
+                                        <ui:AssignOperation.Value>
+                                          <InArgument x:TypeArguments="x:Boolean">
+                                            <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_276">io_Subject == io_TriggerEmailSubject</CSharpValue>
+                                          </InArgument>
+                                        </ui:AssignOperation.Value>
+                                      </ui:AssignOperation>
+                                    </scg:List>
+                                  </ui:MultipleAssign.AssignOperations>
+                                </ui:MultipleAssign>
+                                <ui:LogMessage DisplayName="Log Message that Email Trigger Received" sap:VirtualizedContainerService.HintSize="423,141" sap2010:WorkflowViewState.IdRef="LogMessage_28">
+                                  <ui:LogMessage.Level>
+                                    <InArgument x:TypeArguments="ui:LogLevel">
+                                      <CSharpValue x:TypeArguments="ui:LogLevel" sap2010:WorkflowViewState.IdRef="CSharpValue`1_277">UiPath.Core.Activities.LogLevel.Info</CSharpValue>
+                                    </InArgument>
+                                  </ui:LogMessage.Level>
+                                  <ui:LogMessage.Message>
+                                    <InArgument x:TypeArguments="x:Object">
+                                      <CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_278">"New RBC NIS Approved Trade Received"</CSharpValue>
+                                    </InArgument>
+                                  </ui:LogMessage.Message>
+                                </ui:LogMessage>
+                                <ui:MoveOutlookMessage DisplayName="Move Outlook Trigger Mail Message" sap:VirtualizedContainerService.HintSize="423,88" sap2010:WorkflowViewState.IdRef="MoveOutlookMessage_3" MailFolder="Inbox\Processed RBC NIS Trade Approval">
+                                  <ui:MoveOutlookMessage.Account>
+                                    <InArgument x:TypeArguments="x:String">
+                                      <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_279">in_SystemEmail</CSharpValue>
+                                    </InArgument>
+                                  </ui:MoveOutlookMessage.Account>
+                                  <ui:MoveOutlookMessage.MailMessage>
+                                    <InArgument x:TypeArguments="snm:MailMessage">
+                                      <CSharpValue x:TypeArguments="snm:MailMessage" sap2010:WorkflowViewState.IdRef="CSharpValue`1_280">CurrentMail</CSharpValue>
+                                    </InArgument>
+                                  </ui:MoveOutlookMessage.MailMessage>
+                                </ui:MoveOutlookMessage>
+                              </Sequence>
+                            </ActivityAction>
+                          </umab:ForEachEmailX.Body>
+                          <umab:ForEachEmailX.Mails>
+                            <InArgument x:TypeArguments="scg:IEnumerable(snm:MailMessage)">
+                              <CSharpValue x:TypeArguments="scg:IEnumerable(snm:MailMessage)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_281">io_Emails</CSharpValue>
+                            </InArgument>
+                          </umab:ForEachEmailX.Mails>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </umab:ForEachEmailX>
+                      </ActivityAction>
+                    </umab:OutlookApplicationCard.Body>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </umab:OutlookApplicationCard>
+                  <uix:NCheckState DisplayName="Check Password Status" sap:VirtualizedContainerService.HintSize="854,394" sap2010:WorkflowViewState.IdRef="NCheckState_12" Timeout="5" Version="V3">
+                    <uix:NCheckState.IfExists>
+                      <Sequence DisplayName="Password is Locked" sap:VirtualizedContainerService.HintSize="400,177" sap2010:WorkflowViewState.IdRef="Sequence_119">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Assign DisplayName="Assign Password is Locked" sap:VirtualizedContainerService.HintSize="338,62" sap2010:WorkflowViewState.IdRef="Assign_29">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Boolean">
+                              <CSharpReference x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpReference`1_134">io_RBCExpressPasswordStatus</CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </uix:NCheckState.IfExists>
+                    <uix:NCheckState.IfNotExists>
+                      <Sequence DisplayName="Password is Not Locked" sap:VirtualizedContainerService.HintSize="400,177" sap2010:WorkflowViewState.IdRef="Sequence_120">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Assign DisplayName="Assign Password is Not Locked" sap:VirtualizedContainerService.HintSize="338,62" sap2010:WorkflowViewState.IdRef="Assign_30">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:Boolean">
+                              <CSharpReference x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpReference`1_135">io_RBCExpressPasswordStatus</CSharpReference>
+                            </OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                      </Sequence>
+                    </uix:NCheckState.IfNotExists>
+                    <uix:NCheckState.Target>
+                      <uix:TargetAnchorable BrowserURL="https://nis.rbc.com/nis/app/#/selfpasswordreset" DesignTimeRectangle="278, 291, 1140, 26" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'Self Password Reset'" FullSelectorArgument="&lt;webctrl tag='H3' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='H3' type='' class='' aaname='Self Password Reset' check:innerText='Self Password Reset' /&gt;" Guid="775c35c6-4ef5-4a1b-9b6a-072192a4c7ff" InformativeScreenshot="4d18872914336490946d9f6287e287a6.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Note Issuance System' /&gt;" SearchSteps="FuzzySelector" Version="V2" Visibility="Interactive">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                            <uix:Target DesignTimeRectangle="291, 240, 102, 20" ElementType="Text" FriendlyName="'Password Reset'" FullSelectorArgument="&lt;webctrl parentid='menuBottom' tag='A' /&gt;" FuzzySelectorArgument="&lt;webctrl parentid='menuBottom' tag='A' type='' class='' aaname=' Password Reset ' check:innerText='Password Reset' /&gt;" SearchSteps="FuzzySelector" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NCheckState.Target>
+                  </uix:NCheckState>
+                </Sequence>
+              </State.Entry>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <av:Point x:Key="ShapeLocation">61.5,237.99999999999997</av:Point>
+                  <av:Size x:Key="ShapeSize">737,104</av:Size>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  <x:Double x:Key="StateContainerWidth">703</x:Double>
+                  <x:Double x:Key="StateContainerHeight">25</x:Double>
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <State.Transitions>
+                <Transition DisplayName="Not Expired" sap:VirtualizedContainerService.HintSize="450,506" sap2010:WorkflowViewState.IdRef="Transition_13">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <av:PointCollection x:Key="ConnectorLocation">430,342 430,388</av:PointCollection>
+                      <x:Int32 x:Key="SrcConnectionPointIndex">39</x:Int32>
+                      <x:Int32 x:Key="DestConnectionPointIndex">38</x:Int32>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Transition.Condition>
+                    <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_282">io_RBCExpressPasswordStatus==true</CSharpValue>
+                  </Transition.Condition>
+                  <Transition.To>
+                    <State x:Name="__ReferenceID2" sap2010:Annotation.AnnotationText="If the password has not expired, check to see if there's a message that the account has been locked out. If so notiry Treasury to unlock the account and resend the trigger email, otherwise, continue to the final step." DisplayName="Account Status" sap:VirtualizedContainerService.HintSize="612,104" sap2010:WorkflowViewState.IdRef="State_5">
+                      <State.Entry>
+                        <uix:NCheckState DisplayName="Check Account Locked" sap:VirtualizedContainerService.HintSize="854,394" sap2010:WorkflowViewState.IdRef="NCheckState_11" Timeout="5" Version="V3">
+                          <uix:NCheckState.IfExists>
+                            <Sequence DisplayName="Account is Locked" sap:VirtualizedContainerService.HintSize="400,177" sap2010:WorkflowViewState.IdRef="Sequence_115">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <Assign DisplayName="Assign Account Locked Status" sap:VirtualizedContainerService.HintSize="338,62" sap2010:WorkflowViewState.IdRef="Assign_27">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Boolean">
+                                    <CSharpReference x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpReference`1_136">io_RBCExpressPasswordStatus</CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </Sequence>
+                          </uix:NCheckState.IfExists>
+                          <uix:NCheckState.IfNotExists>
+                            <Sequence DisplayName="Account is Not Locked" sap:VirtualizedContainerService.HintSize="400,177" sap2010:WorkflowViewState.IdRef="Sequence_116">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <Assign DisplayName="Assign Account Not Locked Status" sap:VirtualizedContainerService.HintSize="338,62" sap2010:WorkflowViewState.IdRef="Assign_28">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Boolean">
+                                    <CSharpReference x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpReference`1_137">io_RBCExpressPasswordStatus</CSharpReference>
+                                  </OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                            </Sequence>
+                          </uix:NCheckState.IfNotExists>
+                          <uix:NCheckState.Target>
+                            <uix:TargetAnchorable BrowserURL="https://nis.rbc.com/nis/login/" DesignTimeRectangle="474, 290, 408, 37" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'You are'" FullSelectorArgument="&lt;webctrl tag='H4' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='H4' type='' class='validation' aaname='You are already logged in. Please contact your local administrator.' check:innerText='You are already logged in. Please contact your local administrator.' /&gt;" Guid="73c8101e-5869-4a61-9ab5-7b9240279838" ImageBase64="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" InformativeScreenshot="d508bdbe8ad1a7708f9ab3613937695d.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Note Issuance System' /&gt;" SearchSteps="FuzzySelector" Version="V2" Visibility="Interactive">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="2">
+                                  <uix:Target DesignTimeRectangle="468, 197, 720, 33" ElementType="Text" FriendlyName="'Sign In'" FullSelectorArgument="&lt;webctrl tag='H2' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='H2' type='' class='' aaname='Sign In To Note Issuance System' check:innerText='Sign In To Note Issuance System' /&gt;" ImageBase64="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" SearchSteps="FuzzySelector" />
+                                  <uix:Target DesignTimeRectangle="468, 348, 49, 20" ElementType="Text" FriendlyName="'User ID'" FullSelectorArgument="&lt;webctrl tag='LABEL' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='LABEL' type='' class='' aaname='User ID' check:innerText='User ID' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAADUAAAAYCAYAAABa1LWYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAESSURBVFhH7ZSLDcMgDES7E2sxiqdhlKzBEG6gNhgb1DRNKxFxkqXwM/ccJw+8oRbULFpQs2hBzSIBtSE4h87B/iQVMfg07zFEmvq5yIsP++1i3AlozWZND5XCK2PnoDZoktbLWcqELGcM6PMZQMh5rakxlPJWfLQF/xyKTekoxhUQRTFuzvc64CDUrg1eeWTdzkP1mjmJqlerz+cpb4HqwbCOQ8Xg1X2n2o/HNWRCvsSGKoppWam/Q7F4PwUZGENRi1wM9ab96huQ1PVjtAlfUtCm/ZSuhCqt3M4LqLRnXOXyDek/H4cxMFj/CqofuoANVFbHtKm62aPfojYh1i+G6v2vLNQNtKBm0YKaRQtqDiE+AaKP+5TF+U7lAAAAAElFTkSuQmCC" SearchSteps="FuzzySelector" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NCheckState.Target>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </uix:NCheckState>
+                      </State.Entry>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <av:Point x:Key="ShapeLocation">124,388</av:Point>
+                          <av:Size x:Key="ShapeSize">612,104</av:Size>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          <x:Double x:Key="StateContainerWidth">578</x:Double>
+                          <x:Double x:Key="StateContainerHeight">25</x:Double>
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <State.Transitions>
+                        <Transition DisplayName="Locked" sap:VirtualizedContainerService.HintSize="450,545" sap2010:WorkflowViewState.IdRef="Transition_15">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <av:PointCollection x:Key="ConnectorLocation">124,398.4 13.5,398.4 13.5,165.60000000000002 252.5,165.60000000000002</av:PointCollection>
+                              <x:Int32 x:Key="SrcConnectionPointIndex">5</x:Int32>
+                              <x:Int32 x:Key="DestConnectionPointIndex">49</x:Int32>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Transition.To>
+                            <x:Reference>__ReferenceID0</x:Reference>
+                          </Transition.To>
+                          <Transition.Action>
+                            <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Body="The 'finsys' account is locked out of RBC NIS, please unlock the account and resend the 'RBC NIS trade approved' email." DisplayName="Send Unlock Account Email" sap:VirtualizedContainerService.HintSize="334,149" sap2010:WorkflowViewState.IdRef="SendOutlookMail_7" Importance="Normal" IsBodyHtml="False" IsDraft="False" Sensitivity="Normal" Subject="RBC NIS Account Locked Out">
+                              <ui:SendOutlookMail.Files>
+                                <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                              </ui:SendOutlookMail.Files>
+                              <ui:SendOutlookMail.To>
+                                <InArgument x:TypeArguments="x:String">
+                                  <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_288">strEmailTreasury</CSharpValue>
+                                </InArgument>
+                              </ui:SendOutlookMail.To>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </ui:SendOutlookMail>
+                          </Transition.Action>
+                          <Transition.Condition>
+                            <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_289">io_RBCExpressPasswordStatus==false</CSharpValue>
+                          </Transition.Condition>
+                        </Transition>
+                        <Transition DisplayName="Not Locked" sap:VirtualizedContainerService.HintSize="450,506" sap2010:WorkflowViewState.IdRef="Transition_16">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <av:PointCollection x:Key="ConnectorLocation">430,492 430,528</av:PointCollection>
+                              <x:Int32 x:Key="SrcConnectionPointIndex">39</x:Int32>
+                              <x:Int32 x:Key="DestConnectionPointIndex">38</x:Int32>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Transition.Condition>
+                            <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_290">io_RBCExpressPasswordStatus==true</CSharpValue>
+                          </Transition.Condition>
+                          <Transition.To>
+                            <State x:Name="__ReferenceID3" sap2010:Annotation.AnnotationText="Login is successful, no more steps, proceed back to the Main workflow." DisplayName="Login Successful" sap:VirtualizedContainerService.HintSize="253,104" sap2010:WorkflowViewState.IdRef="State_6" IsFinal="True">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <av:Point x:Key="ShapeLocation">303.5,528</av:Point>
+                                  <av:Size x:Key="ShapeSize">253,104</av:Size>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  <x:Double x:Key="StateContainerWidth">219</x:Double>
+                                  <x:Double x:Key="StateContainerHeight">25</x:Double>
+                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </State>
+                          </Transition.To>
+                        </Transition>
+                      </State.Transitions>
+                    </State>
+                  </Transition.To>
+                </Transition>
+                <Transition DisplayName="Expired" sap:VirtualizedContainerService.HintSize="503,1002" sap2010:WorkflowViewState.IdRef="Transition_14">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <av:PointCollection x:Key="ConnectorLocation">61.5,253.59999999999997 31.5,253.59999999999997 31.5,196.8 252.5,196.8</av:PointCollection>
+                      <x:Int32 x:Key="SrcConnectionPointIndex">9</x:Int32>
+                      <x:Int32 x:Key="DestConnectionPointIndex">73</x:Int32>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Transition.To>
+                    <x:Reference>__ReferenceID0</x:Reference>
+                  </Transition.To>
+                  <Transition.Action>
+                    <Sequence DisplayName="Password Status Expired" sap:VirtualizedContainerService.HintSize="400,606" sap2010:WorkflowViewState.IdRef="Sequence_126">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" Body="The 'finsys' account password has expired. Please login to the RBC NIS website and update the password. Then notify the robot administrator that the credentials need to be updated. After the credential asset has been updated, the robot administrator will resend the email to start the process." DisplayName="Send Update Password Email" sap:VirtualizedContainerService.HintSize="338,149" sap2010:WorkflowViewState.IdRef="SendOutlookMail_6" Importance="Normal" IsBodyHtml="False" IsDraft="False" Sensitivity="Normal" Subject="RBC NIS Password Needs to be Updated">
+                        <ui:SendOutlookMail.Files>
+                          <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+                        </ui:SendOutlookMail.Files>
+                        <ui:SendOutlookMail.To>
+                          <InArgument x:TypeArguments="x:String">
+                            <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_286">strEmailTreasury</CSharpValue>
+                          </InArgument>
+                        </ui:SendOutlookMail.To>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:SendOutlookMail>
+                      <ui:LogMessage sap2010:Annotation.AnnotationText="Log Password Update Email Sent" DisplayName="Log Password Expired" sap:VirtualizedContainerService.HintSize="338,172" sap2010:WorkflowViewState.IdRef="LogMessage_31" Level="Info">
+                        <ui:LogMessage.Message>
+                          <InArgument x:TypeArguments="x:Object">
+                            <CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_287">"Expired Password Email Sent"</CSharpValue>
+                          </InArgument>
+                        </ui:LogMessage.Message>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:LogMessage>
+                      <uix:NApplicationCard sap2010:Annotation.AnnotationText="Use the Browser to Access RBC NIS Reports and Download to SharePoint" AttachMode="ByInstance" CloseMode="Always" DisplayName="Log Out and Close the Browser" sap:VirtualizedContainerService.HintSize="338,94" sap2010:WorkflowViewState.IdRef="NApplicationCard_12" InteractionMode="DebuggerApi" OpenMode="IfNotOpen" ScopeGuid="9948d0dd-e31f-47e8-a7d9-b201863ab0d4" Version="V2" WindowResize="Maximize">
+                        <uix:NApplicationCard.Body>
+                          <ActivityAction x:TypeArguments="x:Object">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                            </ActivityAction.Argument>
+                            <Sequence DisplayName="Log Out of RBC NIS" sap:VirtualizedContainerService.HintSize="400,469" sap2010:WorkflowViewState.IdRef="Sequence_123">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <uix:NClick ActivateBefore="True" ClickType="Single" ContinueOnError="True" DisplayName="Click 'Financial Systems'" sap:VirtualizedContainerService.HintSize="338,157" sap2010:WorkflowViewState.IdRef="NClick_45" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="9948d0dd-e31f-47e8-a7d9-b201863ab0d4" Version="V3">
+                                <uix:NClick.Target>
+                                  <uix:TargetAnchorable BrowserURL="https://nis.rbc.com/nis/app/#/reports" DesignTimeRectangle="1367, 219, 11, 14" DesignTimeScaleFactor="1" FriendlyName="'I'" FullSelectorArgument="&lt;webctrl idx='2' parentid='clientUser' tag='I' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' parentid='clientUser' tag='I' class='fa fa-lg fa-caret-down' aaname='' /&gt;" Guid="11aac55d-d2dd-46d5-bd2c-daeb8a9e82c0" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAA8AAAASCAYAAACEnoQPAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACTSURBVDhPncyxCYNAAIVhN3Ecd3GG7GHlBBYO4QApLEQE04RcCouIiOXzThSMvsOHB59wP74LgrjAbTSqaFTRqKJRtXweDZJ6QGXGCz3yvDyM0w4vaGdq34exFWY/mPUH35nMF9E23I+vHjgNnb+LxR6gQ+cUrP0D3qFDoxVmHZ71xz90aFTRqKJRRaOKRhWNkgIziOCeSncEt5sAAAAASUVORK5CYII=" InformativeScreenshot="2e1c2b0e8d4a532866d5994821c4d7b5.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Note Issuance System' /&gt;" SearchSteps="FuzzySelector, Image" Version="V2" Visibility="Interactive">
+                                    <uix:TargetAnchorable.Anchors>
+                                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                        <uix:Target DesignTimeRectangle="1224, 214, 154, 21" ElementType="Text" FriendlyName="'Financial Systems'" FullSelectorArgument="&lt;webctrl parentid='clientUser' tag='A' /&gt;" FuzzySelectorArgument="&lt;webctrl parentid='clientUser' tag='A' type='' class='' aaname='  Financial Systems  ' check:innerText='Financial Systems' /&gt;" ImageBase64="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" SearchSteps="FuzzySelector, Image" />
+                                      </scg:List>
+                                    </uix:TargetAnchorable.Anchors>
+                                  </uix:TargetAnchorable>
+                                </uix:NClick.Target>
+                              </uix:NClick>
+                              <uix:NClick ActivateBefore="True" ClickType="Single" ContinueOnError="True" DisplayName="Click 'Log out'" sap:VirtualizedContainerService.HintSize="338,157" sap2010:WorkflowViewState.IdRef="NClick_46" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="9948d0dd-e31f-47e8-a7d9-b201863ab0d4" Version="V3">
+                                <uix:NClick.Target>
+                                  <uix:TargetAnchorable BrowserURL="https://nis.rbc.com/nis/app/#/reports" DesignTimeRectangle="1313, 322, 198, 21" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'Log out'" FullSelectorArgument="&lt;webctrl parentid='logout' tag='A' /&gt;" FuzzySelectorArgument="&lt;webctrl parentid='logout' tag='A' type='' class='' aaname='Log out' check:innerText='Log out' /&gt;" Guid="141df095-df4f-4f6f-a25e-5adb72aa6ba1" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAMoAAAAaCAYAAAD2W8OHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKKSURBVHhe7dmvaxthHAbw+xuiphZTNbOpqsFERZiqKhETkYFBqJgohUHUqgIHm2jMMgZlhVS0qiPQEEhFRETVCDGNiIgphIojEPPsvfd+9H137/3o0jZHecQH7v3mfd9UfJ++dxfL+ngJIkphLBKRzlgkIp2xSEQ6Y5GIdMYiEemMRaJ7a2IEC/PxmeGzZ8BYJLq35xCUM/QcC5g1o59FCkT/hUEhyiBbUKrDGubLF4CYC2xiMj5C6Z85pW4dk3DOFkbDBq7E9Wigz1MVf4nvd175a15iflOH/e3u893xW1Gv4oeyxjqpYx7s61976z3a94UXRCtJD0rlz7ZowC0MuucoivG7jtucBbGmLcdy3s8GZmKfxewrKl9EAOw2ft96AYgNilwj9rk+Qvmzt6bnFACnjl0xduekBkXWeKLQo0sLSkueCpi27kIh7F1vigb+gGPbPJYiDa2zpxtiTQ2Hfiik030sRHgmwws5ZlAoJ1KCEtfsHbehN3DVdcfn4vQQjXrbQFmdkxiUuOZuY7D0gumOGRTKiZSgyP/whmbXmjWmUROD4gci0tz6XgwK5cQqJ0pBD8pNU7s9Sw5KXHMHAeKJQrnyMM8oxueNxKBke0YpyxcJOzhNfPZhUOjRpQUl41uvkwOvpr7BeoC3XuEc8V2vxTico+0bPCMdoOruowYvvCBaiReU4DcIjduw/rxMv6P09zEL5jg1HPeTTxRX2u8orlL/kwyhnLPcQa/bkH+zum9RBNUNFPAGg46yPrwgyivtOWZNjEWiNap0WtjzT4PwFmlZg63eCj01Y5FobS5wOH2PRXh75t9GfTfNfULGIhHpjEUi0gUX3jFHRKpIUIgogbFIRIpL/AV8bhCyf49GgQAAAABJRU5ErkJggg==" InformativeScreenshot="52d4a2fc17b5dad0cf68b9a46a7bcd24.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Note Issuance System' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive">
+                                    <uix:TargetAnchorable.Anchors>
+                                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                        <uix:Target DesignTimeRectangle="1224, 214, 154, 22" ElementType="Text" FriendlyName="'Financial Systems'" FullSelectorArgument="&lt;webctrl parentid='clientUser' tag='A' /&gt;" FuzzySelectorArgument="&lt;webctrl parentid='clientUser' tag='A' type='' class='' aaname='  Financial Systems  ' check:innerText='Financial Systems' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAJ4AAAAaCAYAAABGpOW1AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAXySURBVHhe7Vq9SjNNFH7vZC/BS0jpJaS0FGwsbdKKZQoLqxBsTJFiS7GQgBaBBIxEwrKICRjJSgiJISyLETnvOfOT3dmdbHYlefk+nAOPzM7/nHnmnDMT//w5ugcDg38ObaaBwa6hzTQw2DW0mQYGu4Y208Bg19BmHrWgeDsFx/8GJssvcHpvUCzp6hoY/ADJzBYcu5+ccDEJvHfYT9Q3MPgBEhmXU/AE0XQyaHfV+r8ODlT7PjSbjqbMIDPiGYXHQFBsjaDVi7fR4wUavmgTF/8DjrHOsfu1Suv7+Fd4Bwen5TR1ZXHwdc3cF00ZovQMNe8LQi1+wcB9M54ijnhGsad3syvJS7zM9f8vSCNeF6oexsX+HMqVFn63oFCfwGCJYUr/FaxE/Xz47xzULSCRYc8jpzUpXs9V66/FZuIpiqx/wAxHvr6bh67eX8DFeVjfwk10IlZ05o3hUFx4qtgoGI7Bpo1n8g2D3ktks5+g7AY4hhAfx6oTOagsbvGe4KL/GephGUDj9kmUpRGP9zNoy345uBdZQPnIhes5JidjKKzK36CDWUF/wL737xYwQ6JywUtd+5mtgdYXyhc06qK9sLBSEjrxptCYhDpxHp/hgMYQOYE3WdVn6x5GrLXvQ+1KXUsCOP6FuwDH8zdgDrYtdYhQOmF44qdWJ0tUXuab7U+IR4oYw8Epfp8OoEnthyNBHtwg3JAZbtAefluVMQyoe3EQ+Mbghtx0sT7eytukvk+4vuRj7bPND8C+esBvurXTBvtQLVO5SrziI1n9AGrMaj3ASZ82Fg8BW3sa8SSxcDNpDYly6VFwXKnHGzro39C0MV2ZsEM3aDtsDQUsm0XWkLR40sJ+wAmOZ1VQRzg3SWKmEzw0bM0lB0nF9zUQ85M6lHG7su5SF85o3fMpHKzG0wDnTH1kkaD/FrZTOsHBju/GUL15VU4RE7Q+VfsVqu3RWqWq+AnxIic5Xq4BU6zoP5rmiJLpmc2F3F1YTnCgWInX1UCZWxrxcDOvuGsl6zKbLKDRfIFC9LBW+OXNaXJLctbnxAl18A2d26iVaYEl2if0wfpC0t7IumqdhE5E/2H9FtQmYR3WNm5cSji+TK+Bhf3SUGmSeBFZJUqCKEJmaILP7Bc4QxKe1ZFwro+TFrL8BDtCED3U/kIJyZWPeC04bC/AW7khIZmIp3eB+rqI8ze4jh+8jMTjeICDmzE0hsK1o9UJ3XoXbNpsZsnjfUlvoydtgnjMJWgklXiqjpU656gH0u8SL0TDD6jWyXuEddOQRj7tM5xMHGy6VMRFiVN0EMRTyKAiF/FE7DlzX1ebEVXa9ojX5VYA3XDtktwy5ilzy0K8CNDF1YhMyzmciLwCCwPQsrB+Q1fKQReSEVz3JWllOLCOeNieWe0kchOPwLzeFJoTfvCINOn7HEJHvrVvvzzBXVE+wdhBKESPLROPKRk3QZSRdUAuZiTeOlfbhUIixksSy8J4MMhCPEmkOBHicy9TbIWBvoeHPRJDWejWlHYlEYM98hgsQTzhtjt3+gOVj3ihS5ew2AHZtM8qouRL/cGBJ7ji80rnNtaZgi0TDzef3F3TpkAZA98eun5yC6L/dOLFLxfoCtntUXe5cFY3T/qJcO/yHTpzcn8ZiCfClWD+ARfCWu5djvglSQnShVVFUV4JmFVH4goXt4ffZPWkng9JH0oMJlyzfL4ha9X2oSkuC/mId4+XKOwL53lcJiKHl6qybJ8R9PrQcUfpb5fsD5tQfpGbqseWiSeu+lz4U0mNlIYEWT03pBCP2qvPKdGnArWuVZ+KCwIKPencRueWQjzC6TPUhp8RfWK8Rk8csQuZJd1kzM0eInGizymDHr/Fs3IZg9FcrkRe7DmFnonk009e4iUev+nJiQ66bL9NsD87IZ5BGlhMjdalqCn7FWB/WMyRX9JdrcFanI7Ym+Sv/t2bJ+g/UiLmOovMJ+kPiwZa8IB9Q+D9GxB+8Gt8rT3ejLvYo6iBQV5oMw0Mdg1tpoHBrqHNNDDYNbSZBgY7xT38BQfPhhkHfRgwAAAAAElFTkSuQmCC" SearchSteps="FuzzySelector, Image" />
+                                      </scg:List>
+                                    </uix:TargetAnchorable.Anchors>
+                                  </uix:TargetAnchorable>
+                                </uix:NClick.Target>
+                              </uix:NClick>
+                            </Sequence>
+                          </ActivityAction>
+                        </uix:NApplicationCard.Body>
+                        <uix:NApplicationCard.TargetApp>
+                          <uix:TargetApp Area="-8, -8, 1696, 1026" BrowserType="Edge" IconBase64="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" InformativeScreenshot="e7a6fcea4ab780fc99475098cbd8bb76.jpg" Selector="&lt;html app='chrome.exe' title='Note Issuance System' /&gt;" Title="Note Issuance System" Url="https://nis.rbc.com/nis/app/#/selfpasswordreset" />
+                        </uix:NApplicationCard.TargetApp>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </uix:NApplicationCard>
+                    </Sequence>
+                  </Transition.Action>
+                  <Transition.Condition>
+                    <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_283">io_RBCExpressPasswordStatus==false</CSharpValue>
+                  </Transition.Condition>
+                </Transition>
+              </State.Transitions>
+            </State>
+          </Transition.To>
+          <Transition.Action>
+            <r:RBCNISLogin DisplayName="RBC NIS Login" sap:VirtualizedContainerService.HintSize="334,25" sap2010:WorkflowViewState.IdRef="RBCNISLogin_7" />
+          </Transition.Action>
+          <Transition.Condition>
+            <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_274">io_EmailReceived==true</CSharpValue>
+          </Transition.Condition>
+        </Transition>
+        <Transition DisplayName="Not Received" sap:VirtualizedContainerService.HintSize="503,778" sap2010:WorkflowViewState.IdRef="Transition_12">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <av:PointCollection x:Key="ConnectorLocation">607.5,170.8 637.5,170.8 637.5,118.8 607.5,118.8</av:PointCollection>
+              <x:Int32 x:Key="SrcConnectionPointIndex">52</x:Int32>
+              <x:Int32 x:Key="DestConnectionPointIndex">12</x:Int32>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Transition.To>
+            <x:Reference>__ReferenceID0</x:Reference>
+          </Transition.To>
+          <Transition.Action>
+            <Sequence sap:VirtualizedContainerService.HintSize="400,382" sap2010:WorkflowViewState.IdRef="Sequence_127">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log Email Not Received" sap:VirtualizedContainerService.HintSize="338,141" sap2010:WorkflowViewState.IdRef="LogMessage_30">
+                <ui:LogMessage.Level>
+                  <InArgument x:TypeArguments="ui:LogLevel">
+                    <CSharpValue x:TypeArguments="ui:LogLevel" sap2010:WorkflowViewState.IdRef="CSharpValue`1_284">UiPath.Core.Activities.LogLevel.Info</CSharpValue>
+                  </InArgument>
+                </ui:LogMessage.Level>
+                <ui:LogMessage.Message>
+                  <InArgument x:TypeArguments="x:Object">
+                    <CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_291">"Email not received, checking again in 5 seconds."</CSharpValue>
+                  </InArgument>
+                </ui:LogMessage.Message>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:LogMessage>
+              <Delay DisplayName="Delay 15 Seconds" Duration="00:00:15" sap:VirtualizedContainerService.HintSize="338,90" sap2010:WorkflowViewState.IdRef="Delay_1" />
+            </Sequence>
+          </Transition.Action>
+          <Transition.Condition>
+            <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_273">io_EmailReceived==false</CSharpValue>
+          </Transition.Condition>
+        </Transition>
+      </State.Transitions>
+    </State>
+    <x:Reference>__ReferenceID1</x:Reference>
+    <x:Reference>__ReferenceID2</x:Reference>
+    <x:Reference>__ReferenceID3</x:Reference>
+    <StateMachine.Variables>
+      <Variable x:TypeArguments="x:String" Name="strEmailTreasury" />
+    </StateMachine.Variables>
+  </StateMachine>
+</Activity>
