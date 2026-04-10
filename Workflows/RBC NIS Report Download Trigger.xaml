@@ -10,7 +10,7 @@
     <x:Property Name="out_NewRBCNISIssuedName" Type="OutArgument(x:String)" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
-  <sap:VirtualizedContainerService.HintSize>1465,1984</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1225,1984</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="76">
@@ -229,8 +229,8 @@
               <InArgument x:TypeArguments="x:String" x:Key="in_RBCNISReportFolder">
                 <CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_159">io_RBCNISReportFolder</CSharpValue>
               </InArgument>
-              <InOutArgument x:TypeArguments="x:String" x:Key="io_NewRBCNISOutstandingByDateFileName">
-                <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_81">out_NewRBCNISOutstandingName</CSharpReference>
+              <InOutArgument x:TypeArguments="x:String" x:Key="io_NewRBCNISOutstandingName">
+                <CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_84">out_NewRBCNISOutstandingName</CSharpReference>
               </InOutArgument>
             </ui:InvokeWorkflowFile.Arguments>
           </ui:InvokeWorkflowFile>

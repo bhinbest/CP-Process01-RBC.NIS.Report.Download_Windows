@@ -9,7 +9,7 @@
     <x:Property Name="out_Subject" Type="OutArgument(x:Boolean)" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
-  <sap:VirtualizedContainerService.HintSize>1465,827</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1149,797</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="70">
@@ -137,16 +137,16 @@
         <x:Boolean x:Key="IsPinned">False</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <State x:Name="__ReferenceID0" sap2010:Annotation.AnnotationText="Check Outlook for the trigger Email. If received, proceed to the next step, otherwise, continue rechecking for the email." DisplayName="Trigger Email" sap:VirtualizedContainerService.HintSize="355,104" sap2010:WorkflowViewState.IdRef="State_2">
+    <State x:Name="__ReferenceID0" sap2010:Annotation.AnnotationText="Check Outlook for the trigger Email. If received, proceed to the next step, otherwise, continue rechecking for the email." DisplayName="Trigger Email" sap:VirtualizedContainerService.HintSize="446,1159" sap2010:WorkflowViewState.IdRef="State_2">
       <State.Entry>
-        <Sequence DisplayName="Trigger Email Entry" sap:VirtualizedContainerService.HintSize="400,1121" sap2010:WorkflowViewState.IdRef="Sequence_112">
+        <Sequence DisplayName="Trigger Email Entry" sap:VirtualizedContainerService.HintSize="400,729" sap2010:WorkflowViewState.IdRef="Sequence_112">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:GetRobotAsset AssetName="RBC NIS Subject" CacheStrategy="None" DisplayName="Get Email Subject to Lookup" FolderPath="Commercial Paper" sap:VirtualizedContainerService.HintSize="338,366" sap2010:WorkflowViewState.IdRef="GetRobotAsset_14">
+          <ui:GetRobotAsset AssetName="RBC NIS Subject" CacheStrategy="None" DisplayName="Get Email Subject to Lookup" FolderPath="Commercial Paper" sap:VirtualizedContainerService.HintSize="338,170" sap2010:WorkflowViewState.IdRef="GetRobotAsset_14">
             <ui:GetRobotAsset.TimeoutMS>
               <InArgument x:TypeArguments="x:Int32" />
             </ui:GetRobotAsset.TimeoutMS>
@@ -162,7 +162,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:GetRobotAsset>
-          <ui:GetRobotAsset AssetName="Treasury Distribution List" CacheStrategy="None" DisplayName="Get the Treasury Email Distribution List" FolderPath="Commercial Paper" sap:VirtualizedContainerService.HintSize="338,366" sap2010:WorkflowViewState.IdRef="GetRobotAsset_19">
+          <ui:GetRobotAsset AssetName="Treasury Distribution List" CacheStrategy="None" DisplayName="Get the Treasury Email Distribution List" FolderPath="Commercial Paper" sap:VirtualizedContainerService.HintSize="338,170" sap2010:WorkflowViewState.IdRef="GetRobotAsset_19">
             <ui:GetRobotAsset.TimeoutMS>
               <InArgument x:TypeArguments="x:Int32" />
             </ui:GetRobotAsset.TimeoutMS>
@@ -226,7 +226,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <State.Transitions>
-        <Transition DisplayName="Received" sap:VirtualizedContainerService.HintSize="450,506" sap2010:WorkflowViewState.IdRef="Transition_11">
+        <Transition DisplayName="Received" sap:VirtualizedContainerService.HintSize="450,508" sap2010:WorkflowViewState.IdRef="Transition_11">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <av:PointCollection x:Key="ConnectorLocation">430,202 430,237.99999999999997</av:PointCollection>
@@ -415,7 +415,7 @@
                     <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_282">io_RBCExpressPasswordStatus==true</CSharpValue>
                   </Transition.Condition>
                   <Transition.To>
-                    <State x:Name="__ReferenceID2" sap2010:Annotation.AnnotationText="If the password has not expired, check to see if there's a message that the account has been locked out. If so notiry Treasury to unlock the account and resend the trigger email, otherwise, continue to the final step." DisplayName="Account Status" sap:VirtualizedContainerService.HintSize="900,824" sap2010:WorkflowViewState.IdRef="State_5">
+                    <State x:Name="__ReferenceID2" sap2010:Annotation.AnnotationText="If the password has not expired, check to see if there's a message that the account has been locked out. If so notiry Treasury to unlock the account and resend the trigger email, otherwise, continue to the final step." DisplayName="Account Status" sap:VirtualizedContainerService.HintSize="612,104" sap2010:WorkflowViewState.IdRef="State_5">
                       <State.Entry>
                         <uix:NCheckState DisplayName="Check Account Locked" sap:VirtualizedContainerService.HintSize="854,394" sap2010:WorkflowViewState.IdRef="NCheckState_11" Timeout="5" Version="V3">
                           <uix:NCheckState.IfExists>
@@ -488,7 +488,7 @@
                         <Transition DisplayName="Locked" sap:VirtualizedContainerService.HintSize="450,545" sap2010:WorkflowViewState.IdRef="Transition_15">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <av:PointCollection x:Key="ConnectorLocation">124,398.4 29.5,398.4 29.5,165.60000000000002 252.5,165.60000000000002</av:PointCollection>
+                              <av:PointCollection x:Key="ConnectorLocation">124,398.4 13.5,398.4 13.5,165.60000000000002 252.5,165.60000000000002</av:PointCollection>
                               <x:Int32 x:Key="SrcConnectionPointIndex">5</x:Int32>
                               <x:Int32 x:Key="DestConnectionPointIndex">49</x:Int32>
                             </scg:Dictionary>
@@ -551,7 +551,7 @@
                 <Transition DisplayName="Expired" sap:VirtualizedContainerService.HintSize="503,1002" sap2010:WorkflowViewState.IdRef="Transition_14">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <av:PointCollection x:Key="ConnectorLocation">61.5,253.59999999999997 43.5,253.59999999999997 43.5,196.8 252.5,196.8</av:PointCollection>
+                      <av:PointCollection x:Key="ConnectorLocation">61.5,253.59999999999997 31.5,253.59999999999997 31.5,196.8 252.5,196.8</av:PointCollection>
                       <x:Int32 x:Key="SrcConnectionPointIndex">9</x:Int32>
                       <x:Int32 x:Key="DestConnectionPointIndex">73</x:Int32>
                     </scg:Dictionary>
@@ -661,10 +661,10 @@
             <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_274">io_EmailReceived==true</CSharpValue>
           </Transition.Condition>
         </Transition>
-        <Transition DisplayName="Not Received" sap:VirtualizedContainerService.HintSize="450,537" sap2010:WorkflowViewState.IdRef="Transition_12">
+        <Transition DisplayName="Not Received" sap:VirtualizedContainerService.HintSize="503,778" sap2010:WorkflowViewState.IdRef="Transition_12">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <av:PointCollection x:Key="ConnectorLocation">607.5,170.8 714,170.8 714,118.80000000000001 607.5,118.80000000000001</av:PointCollection>
+              <av:PointCollection x:Key="ConnectorLocation">607.5,170.8 637.5,170.8 637.5,118.8 607.5,118.8</av:PointCollection>
               <x:Int32 x:Key="SrcConnectionPointIndex">52</x:Int32>
               <x:Int32 x:Key="DestConnectionPointIndex">12</x:Int32>
             </scg:Dictionary>
@@ -673,23 +673,31 @@
             <x:Reference>__ReferenceID0</x:Reference>
           </Transition.To>
           <Transition.Action>
-            <ui:LogMessage DisplayName="Log Email Not Received" sap:VirtualizedContainerService.HintSize="334,141" sap2010:WorkflowViewState.IdRef="LogMessage_30">
-              <ui:LogMessage.Level>
-                <InArgument x:TypeArguments="ui:LogLevel">
-                  <CSharpValue x:TypeArguments="ui:LogLevel" sap2010:WorkflowViewState.IdRef="CSharpValue`1_284">UiPath.Core.Activities.LogLevel.Info</CSharpValue>
-                </InArgument>
-              </ui:LogMessage.Level>
-              <ui:LogMessage.Message>
-                <InArgument x:TypeArguments="x:Object">
-                  <CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_285">"Email not received, checking again in sixty seconds."</CSharpValue>
-                </InArgument>
-              </ui:LogMessage.Message>
+            <Sequence sap:VirtualizedContainerService.HintSize="400,382" sap2010:WorkflowViewState.IdRef="Sequence_127">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-            </ui:LogMessage>
+              <ui:LogMessage DisplayName="Log Email Not Received" sap:VirtualizedContainerService.HintSize="338,141" sap2010:WorkflowViewState.IdRef="LogMessage_30">
+                <ui:LogMessage.Level>
+                  <InArgument x:TypeArguments="ui:LogLevel">
+                    <CSharpValue x:TypeArguments="ui:LogLevel" sap2010:WorkflowViewState.IdRef="CSharpValue`1_284">UiPath.Core.Activities.LogLevel.Info</CSharpValue>
+                  </InArgument>
+                </ui:LogMessage.Level>
+                <ui:LogMessage.Message>
+                  <InArgument x:TypeArguments="x:Object">
+                    <CSharpValue x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpValue`1_291">"Email not received, checking again in 5 seconds."</CSharpValue>
+                  </InArgument>
+                </ui:LogMessage.Message>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:LogMessage>
+              <Delay DisplayName="Delay 15 Seconds" Duration="00:00:15" sap:VirtualizedContainerService.HintSize="338,90" sap2010:WorkflowViewState.IdRef="Delay_1" />
+            </Sequence>
           </Transition.Action>
           <Transition.Condition>
             <CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_273">io_EmailReceived==false</CSharpValue>
